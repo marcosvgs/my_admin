@@ -20,7 +20,7 @@ module MyAdmin
         directory = File.expand_path('../templates', __FILE__)
 
    			template "config/initializers/my_admin.rb", "config/initializers/my_admin.rb"
-        template "public/plugins/ckeditor/ckupload.php", "public/my_admin/plugins/ckeditor/ckupload.php"
+        # template "public/plugins/ckeditor/ckupload.php", "public/my_admin/plugins/ckeditor/ckupload.php"
 
         #-- "Add Migrations"
 
