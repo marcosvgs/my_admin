@@ -212,6 +212,7 @@ Veja abaixo todas opções:
     ```
 
   -	remote:
+  
     Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
     Hash com dois valores: 
     `Field`: Campo que será alterado
