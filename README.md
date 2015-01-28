@@ -124,7 +124,9 @@ Veja abaixo todas opções:
   As customizações disponíveis são:
 
   -	type:
+
     Tipo do campo (Veja mais em Tipo dos Campos)
+
     Tipo: String ou Symbol
 
     ```ruby
@@ -132,7 +134,9 @@ Veja abaixo todas opções:
     ```
 
   -	order:
+
     Define se o campo poderá ser ordenado ou não na grid de visualização.
+    
     Tipo: Boolean
      
     ```ruby
@@ -196,6 +200,7 @@ Veja abaixo todas opções:
     ```
 
   - filter_type:
+
     Tipo do campo nos filtros (Veja mais em Tipo dos Campos)
     Tipo: String ou Symbol
 
@@ -204,6 +209,7 @@ Veja abaixo todas opções:
     ```
 
   -	onchange:
+
     Executa uma instrução javascript ao alterar o valor de um campo do tipo lista.
     Tipo: String
 
@@ -212,7 +218,7 @@ Veja abaixo todas opções:
     ```
 
   -	remote:
-  
+
     Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
     Hash com dois valores: 
     `Field`: Campo que será alterado
