@@ -1,0 +1,9 @@
+<div class="clearfix">
+  <%= form.label field if show_label %>
+	<%= render model_template(application, model, 'popup_hint'), { :application => application, :model => model, :field => field, :item => item, :form => form } %>
+	<div class="<%= "input" if show_label %>">
+	  <%= field_hint(application, model, field, 'top') %>
+  	<%= edit_field_content(application, model, field, item, form) %>
+  	<%= field_hint(application, model, field, 'bottom') %>
+	</div>
+</div>

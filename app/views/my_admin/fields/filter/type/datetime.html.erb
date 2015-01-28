@@ -1,0 +1,13 @@
+<% value = params[model.underscore][field].to_datetime rescue nil %>
+
+<div class="bootstrap-timepicker">
+	
+	<% val = I18n.l(value, :format=> "%d/%m/%Y %H:%M") unless value.nil? %>
+	<%= hidden_field_tag "#{model.underscore}[#{field.to_s}]", value, :class => "datetime" %>
+	
+	<% val = I18n.l(value, :format=> "%d/%m/%Y") unless value.nil? %>
+	<input type="text" name="datepick" class="input-medium datepick" value="<%= val %>">
+	
+	<% val = I18n.l(value, :format=> "%H:%M") unless value.nil? %>
+	<input type="text" name="timepicker" class="input-small timepick" value="<%= val %>">
+</div>

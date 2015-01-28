@@ -1,0 +1,9 @@
+<div class="control-group">
+	<%= form.label field, nil, :class => "control-label" if show_label %>	
+	<%#= render model_template(application, model, 'popup_hint'), { :application => application, :model => model, :field => field, :object => object, :form => form } %>
+	<div class="controls">
+		<%= field_hint(application, model, field, 'top') %>
+		<%= edit_field_content(application, model, field, object, form) %>
+		<%= field_hint(application, model, field, 'bottom') %>
+	</div>
+</div>

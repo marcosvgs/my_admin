@@ -1,0 +1,30 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require my_admin/bootstrap
+ *= require my_admin/bootstrap-responsive
+ *= require my_admin/plugins/jquery-ui/smoothness/jquery-ui
+ *= require my_admin/plugins/jquery-ui/smoothness/jquery.ui.theme
+ *= require my_admin/plugins/pageguide/pageguide
+ *= require my_admin/plugins/fullcalendar/fullcalendar
+ *= require my_admin/plugins/fullcalendar/fullcalendar.print
+ *= require my_admin/plugins/datatable/TableTools
+ *= require my_admin/plugins/chosen/chosen
+ *= require my_admin/plugins/select2/select2
+ *= require my_admin/plugins/colorpicker/colorpicker
+ *= require my_admin/plugins/datepicker/datepicker
+ *= require my_admin/plugins/timepicker/bootstrap-timepicker.min
+ *= require my_admin/plugins/xeditable/bootstrap-editable
+ *= require my_admin/style
+ *= require my_admin/themes
+ *= require my_admin/my_admin
+ *= require my_admin
+ */

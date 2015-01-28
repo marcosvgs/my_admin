@@ -1,0 +1,7 @@
+<% addon = field_setting(model, field, :addon) || "R$" %>
+<% klass = field_setting(model, field, :class) %>
+
+<div class="input-prepend">
+	<span class="add-on"><%= addon %></span>
+	<%= form.text_field field, :class => "price_format #{klass}", :value => my_admin_number_to_currency_edit(object.send(field)) %>
+</div>

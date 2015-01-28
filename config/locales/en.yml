@@ -1,0 +1,35 @@
+en:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+  my_admin:
+    label:
+      create: "Create"
+      login: "Login"
+  activerecord:
+    errors:
+      template:
+        header: ""
+        body: "Please check the following fields:"
+      messages:
+        inclusion: "not included in the list"
+        exclusion: "unavailable"
+        invalid: "not valid"
+        confirmation: "is not in accordance with the confirmation"
+        accepted: "must be accepted"
+        empty: "can not be empty"
+        blank: "can not be empty"
+        too_long: "is too long (no more than %{count} characters)"
+        too_short: " not be less than %{count} characters"
+        wrong_length: "is not the correct size (need to have %{count} characters)"
+        taken: "unavailable"
+        not_a_number: "not a number"
+        greater_than: "must be greater than %{count}"
+        greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        equal_to: "must be equal to %{count}"
+        less_than: "must be less than %{count}"
+        less_than_or_equal_to: "must be less than or equal to %{count}"
+        odd: "must be odd"
+        even: "must be even"
+        invalid_date: 'format is invalid'
+        record_invalid: "not valid"

@@ -1,0 +1,5 @@
+<%
+	@collection = [['Não',false],['Sim',true]]
+	@collection_selected = object.send(field)
+%>
+<%= select_tag "#{model.underscore}[#{field.to_s}]", options_for_select(@collection, @collection_selected) %>

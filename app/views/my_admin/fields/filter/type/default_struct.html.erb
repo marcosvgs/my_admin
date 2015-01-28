@@ -1,0 +1,7 @@
+<div class="control-group">
+	<%= label_tag field, field_title(@model, field), :class => "control-label" if show_label %>
+	<div class="controls">
+		<%= filter_field_content(application, model, field, object) %>
+	</div>
+	
+</div>

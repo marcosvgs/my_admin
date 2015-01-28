@@ -1,0 +1,34 @@
+<%
+	@collection = model.reflections[field.to_sym].klass.all
+	@field_name = "#{field.to_s.singularize}_ids"
+	@collection_selected = object.send(field)
+	
+	@collection_available = @collection - @collection_selected
+	
+	@options = @collection.map { |i| [i.to_s, i.id] } 
+	@options_available = @collection_available.map { |i| [i.to_s, i.id] } 
+	@options_selected = @collection_selected.map { |i| [i.to_s, i.id] } 
+	
+	@collection_selected = object.send(@field_name)
+	
+%>
+<div class="two_lists">
+  
+  <div class="div_available">
+    <span><%= I18n.t('my_admin.labels.two_list.available') %></span>
+    <%= select_tag "#{model.underscore}[#{field}_available]", options_for_select(@options_available), { :class => "available", :multiple => true, :size => 6, :name => nil } %>
+    <%= link_to I18n.t('my_admin.labels.two_list.add_all'), "#", :class => "add_all" %>
+  </div>
+  <div class="div_action">
+    <%= link_to I18n.t('my_admin.labels.two_list.add'), "#", :class => "add r" %>
+    <%= link_to I18n.t('my_admin.labels.two_list.remove'), "#", :class => "remove r" %>
+  </div>
+  <div class="div_added">
+    <span><%= I18n.t('my_admin.labels.two_list.added') %></span>
+    <%= select_tag "#{model.underscore}[#{field}_add]", options_for_select(@options_selected), { :class => "added", :multiple => true, :size => 6, :name => nil } %>
+    <%= link_to I18n.t('my_admin.labels.two_list.remove_all'), "#", :class => "remove_all" %>
+  </div>
+ 
+  <%= hidden_field_tag "#{model.underscore}[#{@field_name}][]", "" %>
+  <%= select_tag "#{model.underscore}[#{@field_name}][]", options_for_select(@options, @collection_selected), { :class => "d_n list", :multiple => true, :size => 6 } %>
+</div>

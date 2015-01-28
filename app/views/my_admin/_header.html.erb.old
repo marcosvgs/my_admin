@@ -1,0 +1,42 @@
+<!-- Header -->
+<div id="header" class="row">
+  <div class="span8">
+    <h1 class="r">
+      <%= link_to MyAdmin.title, send("#{admin_prefix}_path")  %>
+    </h1>
+  </div>
+   
+	<% if my_admin_signed_in? %>
+		<div id="user-menu" class="span8 t_r">
+        <%= image_tag(my_admin_user.photo.url(:my_admin)) %>
+        <div class="menu">
+          <span>Bem vindo, <strong><%= my_admin_user.full_name %></strong></span>
+          <%= link_to "Alterar senha", send("edit_#{admin_prefix}_password_path", :class => "change_password") %>
+          <%#= link_to "Mapa do site", "#", :class => "sitemap" %>
+          <%= link_to "Sair", send("#{admin_prefix}_sessions_path"), :class => "logout" %>
+        </div>
+    </div>
+	<% end %>
+</div>
+
+<% if flash[:notice] %>
+<div id="messagelist" class="alert-message warning">
+  <ul>
+  	<% [flash[:notice]].flatten.each do |note| %>
+  		<li><%= note %></li>
+  	<% end %>
+  </ul>
+</div>
+<% end %>
+
+<h2 class="page_title">
+  <%= yield(:title) %>
+</h2>
+
+<!-- END Header -->
+<% unless breadcrumbs.items.blank?  %>
+    <div id="breadcrumb" class="breadcrumb">
+        <%= breadcrumbs.render(:format => :inline, :separator => I18n.t('breadcrumbs.separator')) %>
+    </div>
+<% end %>
+

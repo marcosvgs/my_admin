@@ -1,0 +1,22 @@
+es:
+  will_paginate:
+    previous_label: "Anterior"
+    next_label: "Siguiente"
+  datetime:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      only_day: "%d"
+      short: "%d/%m/%y"
+      short_with_literal: "%d/%m/%y – %a"
+      literal: "%B/%Y"
+      short_literal: "%b/%y"
+      day_of_week: "%a"
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    abbr_day_names: [Dom, Lun, Mar, Mir, Jue, Vie, Sáb]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Fev, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    order: ['day', 'month', 'year']

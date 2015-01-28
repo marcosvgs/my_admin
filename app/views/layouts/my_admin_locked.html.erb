@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- Apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- Apple devices fullscreen -->
+		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+	  <meta name="rails-controller" content="<%= controller.class.name.underscore.gsub(%r{/}, '_').gsub("_controller", '') %>" />
+	  <meta name="rails-action" content="<%= controller.action_name %>" />
+	
+     <title><%= MyAdmin.title %> - Sistema</title>
+     <%#= raw stylesheet_link_merged :my_admin_locked %>
+     <%#= raw javascript_include_merged :my_admin_locked %>
+     
+     <%= stylesheet_link_tag    "my_admin/application_locked", media: "all", "data-turbolinks-track" => true %>
+     <%= javascript_include_tag "my_admin/application_locked", "data-turbolinks-track" => true %>
+
+		<!--[if lte IE 9]>
+			<script src="javascripts/my_admin/plugins/placeholder/jquery.placeholder.min.js"></script>
+			<script>
+				$(document).ready(function() {
+					$('input, textarea').placeholder();
+				});
+			</script>
+		<![endif]-->
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="<%= asset_path 'my_admin/favicon.ico' %>" />
+		<!-- Apple devices Homescreen icon -->
+		<link rel="apple-touch-icon-precomposed" href="<%= asset_path 'my_admin/apple-touch-icon-precomposed.png' %>" />
+     
+     <%= yield(:head) %>
+
+     <%= csrf_meta_tag %>
+  </head>
+	<body class="locked theme-darkblue" data-theme="theme-darkblue">
+  	<div class="wrapper">
+			<%= yield %>   
+		</div>
+	</body>
+</html>

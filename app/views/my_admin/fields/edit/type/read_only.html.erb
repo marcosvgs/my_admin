@@ -1,0 +1,10 @@
+<% type = "default" %>
+<% type = model.reflections[field.to_sym].macro if model.reflections.has_key? field.to_sym %>
+<% klass = field_setting(model, field, :class) %>
+
+<%= form.text_field field, :disabled => true, :class => klass %>
+
+<% if type.to_s == "belongs_to" %>
+	<% field_name = "#{field.to_s.singularize}_id" %>
+	<%= form.hidden_field field_name %>
+<% end %>

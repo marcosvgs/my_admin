@@ -1,0 +1,6 @@
+<div class="bootstrap-timepicker">
+	
+	<% val = I18n.l(object.send(field), :format=> "%H:%M") unless object.send(field).nil? %>	
+	<%= form.text_field field, :value => val, :class => "input-small timepick" %>
+	
+</div>

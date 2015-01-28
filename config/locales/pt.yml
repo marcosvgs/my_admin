@@ -1,0 +1,210 @@
+pt:
+  breadcrumbs:
+    separator: ">>"
+    my_admin_home: "Home"
+    change_password: "Alterar Senha"
+  will_paginate:
+    previous_label: "Anterior"
+    next_label: "Próximo"
+    page_gap: "..."
+    page_entries_info:
+      single_page:
+        zero:  "Nenhum item encontrado"
+        one:   "Exibindo todos"
+        other: "Exibindo todos"
+      single_page_html:
+        zero:  "Nenhum item encontrado"
+        one:   "Exibindo <b>todos</b>"
+        other: "Exibindo <b>todos</b>"
+      multi_page: "Exibindo %{from} a %{to} de %{count} registros"
+      multi_page_html: "Exibindo <b>%{from}</b> a <b>%{to}</b> de <b>%{count}</b> registros"
+  number:
+    currency:
+      format:
+        delimiter: ','
+        separator: '.'
+        precision: 2
+        format: '%n %u'
+  datetime:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      long: "%d de %B de %Y"
+      day_month: "%d de %B"
+      only_month: "%B"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%y"
+      long: "%d de %B de %Y"
+      day_month: "%d de %B"
+      only_month: "%B"
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      day_month: "%d de %B"
+      only_day: "%d"
+      only_month: "%B"
+      short: "%d/%m/%y"
+      short_with_literal: "%d/%m/%y – %a"
+      literal: "%B/%Y"
+      short_literal: "%b/%y"
+      day_of_week: "%a"
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    order: ['day', 'month', 'year']
+  my_admin:
+    urls:
+      applications:
+        authentication: "autenticacao"
+      models:
+        users: "usuarios"
+        groups: "grupos"
+    actions:
+      update: "Atualizar"
+      create: "Criar"
+      destroy: "Excluir"
+    permissions:
+      update: "Atualizar"
+      create: "Criar"
+      destroy: "Excluir"
+      list: "Listar"
+      export: "Exportar"
+    labels:
+      applications:
+        new: "Adicionar"
+      models:
+        show: "Visualizar"
+        create: "Criar"
+        edit: "Alterar"
+        remove: "Excluir"
+      session:
+        username: 'Usuário'
+        password: 'Senha'
+        login: "Entrar!"
+      two_list:
+        available: "Disponíveis"
+        added: "Adicionados"
+        add: "Adicionar"
+        remove: "Remover"
+        add_all: "Adicionar Todos"
+        remove_all: "Remover Todos"
+    messages:
+      recover:
+        send_email: "Requisição de recuperação de senha enviada por e-mail"
+      models:
+        confirm_remove: "Tem certeza que deseja excluir esse %{model}?"
+      user:
+        already_created: "Primeiro usuário já criado"
+        created: "Usuário criado com sucesso"
+        must_sign_in: "Você deve entrar primeiro"
+        password_changed: "Senha alterada com sucesso"
+    titles:
+      password:
+        edit: "Alterar Senha"
+      models:
+        new: "Adicionar %{model}"
+        new_back: "Adicionar"
+        new_new: "Adicionar e adicionar outro"
+        new_edit: "Adicionar e continuar editando"
+        new_copy: "Adicionar e copiar"
+        edit: "Alterar %{model}"
+        edit_back: "Alterar"
+        edit_new: "Alterar e adicionar outro"
+        edit_edit: "Alterar e continuar editando"
+        edit_copy: "Alterar e copiar"
+        export: "Exportar"
+        show: "Visualizar %{model}"
+      user:
+        first_access: "Primeiro Acesso"
+        login: "Login"
+  activerecord:
+    hint:
+      my_admin:
+        user:
+          superuser:
+            bottom: "Indica que este usuário tem todas as permissões sem atribuí-las explicitamente."
+          photo:
+            bottom: "Recomenda-se o tamanho de 200x200 pixels"
+    applications:
+      my_admin:
+        authentication: "Autenticação"
+    models:
+      my_admin:
+        user: "Usuário"
+        users: "Usuários"
+        group: "Grupo"
+        groups: "Grupos"
+        log: "Log"
+        logs: "Logs"
+    fieldsets:
+      my_admin:
+        user:
+          personal_information: "Informações Pessoais"
+          permissions: "Permissões"
+          groups: "Grupos"
+        group:
+          permissions: "Permissões"
+    attributes:
+      my_admin/user:
+        full_name: "Nome"
+        first_name: 'Primeiro Nome'
+        last_name: 'Último Nome'
+        username: 'Usuário'
+        email: 'E-mail'
+        old_password: 'Senha Atual'
+        password: 'Nova Senha'
+        password_confirmation: 'Confirmação de Senha'
+        superuser: "Usuário Master"
+        active: "Ativo"
+        superuser_export: "Usuário Master"
+        active_export: "Ativo"
+        groups: "Grupos"
+      my_admin/group:
+        name: "Nome"
+        description: "Descrição"
+        permissions: "Permissões"
+      my_admin/log:
+        user: "Usuário"
+        object_type: "Módulo"
+        object: "Item"
+        application_name: "Aplicação"
+        model_name: "Modelo"
+        action_name: "Ação"
+        created_at: "Criado em"
+    errors:
+      my_admin:
+        user:
+          invalid_username_password: "Combinação usuário/senha inválida"
+          invalid_username_email: "Combinação usuário/email inválida"
+          invalid_recover_id: "Código de recuperação de senha inválida ou expirada"
+          invalid_password: "Senha inválida"
+          inactive_user: "Usuário está inativo"
+      template:
+        header: ""
+        body: "Por favor, verifique os seguintes campos:"
+      messages:
+        inclusion: "não está incluído na lista"
+        exclusion: "não está disponível"
+        invalid: "não é válido"
+        confirmation: "não está de acordo com a confirmação"
+        accepted: "precisa de ser aceito"
+        empty: "não pode estar vazio"
+        blank: "não pode estar vazio"
+        too_long: "é muito longo (não mais do que %{count} caracteres)"
+        too_short: "não pode ser menor que %{count} caracteres"
+        wrong_length: "não é do tamanho correto (precisa ter %{count} caracteres)"
+        taken: "não está disponível"
+        not_a_number: "não é um número"
+        greater_than: "precisa ser maior do que %{count}"
+        greater_than_or_equal_to: "precisa ser maior ou igual a %{count}"
+        equal_to: "precisa ser igual a %{count}"
+        less_than: "precisa ser menor do que %{count}"
+        less_than_or_equal_to: "precisa ser menor ou igual a %{count}"
+        odd: "precisa ser ímpar"
+        even: "precisa ser par"
+        invalid_date: "esta com formato inválido"
+        record_invalid: "não é válido"
+        must_be_set: "não pode estar vazio"

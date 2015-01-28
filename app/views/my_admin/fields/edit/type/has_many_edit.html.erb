@@ -1,0 +1,79 @@
+<% has_many_model = model.reflections[field.to_sym].klass %>
+
+<% limit = model.reflections[field.to_sym].options[:limit] || 0 %>
+
+<% can_destroy = field_setting(model, field, :can_destroy) %>
+<% can_add = field_setting(model, field, :can_add) %>
+<% read_only = field_setting(model, field, :read_only) %>
+
+<% can_destroy = true if can_destroy.nil? %>
+<% can_add = true if can_add.nil? %>
+<% read_only = false if read_only.nil? %>
+
+<% object.send(field.to_sym).build if object.send(field.to_sym).count == 0 and can_add and (limit == 0 or limit > object.send(field.to_sym).count) and !read_only %>
+
+<div class="dataTables_wrapper">
+	<!-- <table class="table table-hover table-nomargin table-bordered dataTable dataTable-noheader dataTable-nosortall"> -->
+	<table class="table table-hover table-nomargin table-bordered">
+	<% object.send(field.to_sym).each_with_index do |item, index|  %>
+    <% if index == 0 %>
+			<thead>
+				<tr>
+					<% has_many_model.my_admin.fieldsets.each do |fieldset| %>
+						<% fieldset[:fields].each do |has_many_field| %>
+						
+							<% width = field_setting(has_many_model, has_many_field, :width) %>
+							<th width="<%= width %>">
+								<%= field_title(has_many_model, has_many_field) %>
+							</th>
+						<% end %>
+						<% if can_destroy and !read_only %>
+							<th>
+								Remover
+							</th>
+						<% end %>
+					<% end %>
+				</tr>
+			</thead>
+    <% end %>
+
+		<% columns = 0 %>
+		<%= form.fields_for(field, item) do |has_many_form| %>
+	    <tr>
+		    <% has_many_model.my_admin.fieldsets.each do |fieldset| %>
+		    	<% fieldset[:fields].each do |has_many_field| %>
+		  		  <td>
+							<% if columns == 0 %>
+								<%= has_many_form.hidden_field :id %>
+							<% end %>
+		
+							<%= edit_field_content(application, has_many_model, has_many_field, item, has_many_form) %>
+							<%= field_hint(application, has_many_model, has_many_field, 'bottom') %>
+		  			</td>
+						<% columns = columns + 1 %>
+		    	<% end %>
+		    <% end %>
+				<% if can_destroy and !read_only %>
+		      <td>
+		        <%= has_many_form.check_box '_destroy', :class => 'destroy' %>
+		      </td>
+					<% columns = columns + 1 %>
+				<% end %>
+	    </tr>
+
+		<% end %>
+
+  
+	<% end %>
+	</table>
+
+	<div class="dataTables_info">
+		<input type="hidden" value="<%= limit %>" class="limit" />
+		<%= link_to('javascript:void[0];', :class => "btn btn-mini btn-success add_new_has_many_item") do %>
+			<i class="icon-plus"></i>
+			Adicionar
+		<% end if can_add and (limit == 0 or limit > object.send(field.to_sym).count + 1) and !read_only %>
+	</div>
+</div>
+  
+

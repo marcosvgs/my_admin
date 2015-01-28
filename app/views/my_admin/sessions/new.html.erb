@@ -1,0 +1,30 @@
+<% content_for :body_class do %>login<% end %>
+
+<div class="login-body">
+	<h2><%= I18n.t('my_admin.titles.user.login') %></h2>
+	<%= form_for(:session, {:url => send("#{admin_prefix}_sessions_path"), :html => {:class => "form-validate", :id => "login"}}) do |f| %>
+	
+		<div class="control-group">
+			<div class="email controls">
+				<%= f.text_field :username, {:class => "input-block-level", :placeholder => I18n.t('my_admin.labels.session.username'), 'data-rule-required' => true } %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="pw controls">
+				<%= f.password_field :password, {:class => "input-block-level", :placeholder => I18n.t('my_admin.labels.session.password'), 'data-rule-required' => true } %>
+			</div>
+		</div>
+		<div class="submit">
+			<!-- TODO -->
+			<div class="remember">
+				<input type="checkbox" name="remember" class='icheck-me' data-skin="square" data-color="blue" id="remember"> <label for="remember">Remember me</label>
+			</div>
+			<%= f.submit I18n.t('my_admin.labels.session.login'), :class => "btn btn-primary" %>
+		</div>
+	<% end %>
+	<div class="forget">
+		<%= link_to send("new_#{admin_prefix}_sessions_recover_path") do %>
+			<span>Esqueceu sua senha?</span>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,3 @@
+<% val = I18n.l(object.send(field), :format=> "%d/%m/%Y") unless object.send(field).nil? %>
+
+<%= form.text_field field, :class => "input-medium datepick", :value => val %>

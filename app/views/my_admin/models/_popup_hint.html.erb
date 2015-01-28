@@ -1,0 +1,8 @@
+<% unless (hint = field_hint(@application, @model, field, 'popup')).blank? %>
+	<div class="hint_popup">
+		<span>?</span>
+		<div class="hint hide">
+			<%= hint %>
+		</div>
+	</div>
+<% end %>

@@ -1,0 +1,23 @@
+<div id="left">
+	
+		<% @applications.each do |application| %>
+			<% if application.can?(my_admin_user) %>
+				<div class="subnav">
+					<div class="subnav-title">
+						<a href="#" class='toggle-subnav'><i class="icon-angle-right"></i><span><%= application.title %></span></a>
+					</div>
+					<ul class="subnav-menu">
+				
+						<% application.models.each do |model| %>
+							<% if model.my_admin.can?(:list, my_admin_user) %>
+								<li>
+									<%= link_to model.title_plural, model_link(application, model) %>
+								</li>
+							<% end %>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+		<% end %>
+	
+</div>

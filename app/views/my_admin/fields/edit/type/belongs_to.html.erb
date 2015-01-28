@@ -1,0 +1,28 @@
+<%
+  field_name = "#{field.to_s.singularize}_id"
+  field_id = "#{model.underscore}_#{field_name}"
+
+  remote = field_setting(model, field, :remote)
+  unless remote.blank?
+    field_remote_name = remote[:field]
+    fk = remote[:fk] || field.to_s.singularize
+		remote_model = remote[:model] || model
+    onchange = "updateFieldRemote('#{model_link(application, remote_model)}', '#{model.underscore}', '#{fk}', '#{field_remote_name}', $('##{field_id}').val())"
+  end
+  onchangesettings = field_setting(model, field, :onchange)
+  onchange = onchangesettings unless onchangesettings.blank?
+
+	collection = field_collection(application, model, field, object)
+	collection.insert(0, ['',0])
+	
+	collection_selected = object.send(field.to_s.singularize).id unless object.send(field.to_s.singularize).blank?
+	
+	klass = field_setting(model, field, :class) || "input-xlarge"
+%>
+
+
+<% if object.respond_to? field_name %>
+  <%= form.select field_name, options_for_select(collection, collection_selected), {}, { :onchange => onchange, :class => "select2-me #{klass}", "data-placeholder" => "Selecione" } %>
+<% else %>
+  <%= select_tag "#{model.underscore}[#{field_name}]", options_for_select(collection, collection_selected), { :onchange => onchange, :class => "select2-me #{klass}", "data-placeholder" => "Selecione" } %>
+<% end %>

@@ -1,0 +1,3 @@
+<% val = params[model.underscore][field] if params[model.underscore].present? and params[model.underscore][field].present? %>
+
+<%= text_field_tag "#{model.underscore}[#{field.to_s}]", val, :class => "datepick" %>

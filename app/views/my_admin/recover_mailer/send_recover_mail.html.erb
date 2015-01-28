@@ -1,0 +1,25 @@
+
+<!--Adicionar caminhos diretos para imagens e fonte-->
+<div style="width:100%; margin:0; padding:30px 0; background:#f8f8f8;">
+	<div style="width:560px; padding:40px; background:#fff; border-top:4px solid #0f6db3; box-shadow:1px 2px 2px 0 rgba(0,0,0,.1); margin:0 auto;">
+		<div>
+			<img src="<%=root_url%>images/logo.png" alt="My admin" style="float:left;">
+			<h2 style="float:right; font-family:'core_sans_m_45_regular'; font-weight:normal; font-size:27px; color:#0f6db3; margin:40px 0 15px;">
+				Recuperar Senha
+			</h2>
+		</div>
+		<br/>
+		<p style="clear:both; font-family:'core_sans_m_45_regular'; font-weight:normal; font-size:14px; color:#666; margin-bottom:50px;">
+			<br />
+			Olá <%= @user.full_name %>,
+			<br /><br />
+			Alguém solicitou a troca de sua senha. Caso não tenha sido você, por favor ignore este e-mail.
+			<br /><br />
+			Usuário: <%= @user.username %><br />
+			E-Mail: <%= @user.email %><br /><br /> 
+			Link para alterar senha: <%= link_to send("#{admin_prefix}_sessions_recover_url", @user.encrypted_recover), send("#{admin_prefix}_sessions_recover_url", @user.encrypted_recover) %>
+			<br /><br />
+		</p>
+		<div style="clear:both"></div>
+	</div>
+</div>

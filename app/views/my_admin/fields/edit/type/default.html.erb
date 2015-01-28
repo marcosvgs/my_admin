@@ -1,0 +1,4 @@
+<% klass = field_setting(model, field, :class) %>
+<% maxlength = field_setting(model, field, :maxlength) || model.columns_hash[field.to_s].limit rescue nil %>
+
+<%= form.text_field field, :class => klass, maxlength: maxlength %>

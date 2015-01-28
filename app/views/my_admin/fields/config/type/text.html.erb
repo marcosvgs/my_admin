@@ -1,0 +1,18 @@
+<a href="#" id="config_<%= configuration.key %>" data-type="textarea" data-pk="<%= configuration.key %>" data-original-title="<%= configuration.name %>"><%= configuration.value %></a>
+
+<script type='text/javascript'>
+	$(function () {
+  
+	    //editables 
+	    $('#config_<%= configuration.key %>').editable({
+	      type: 'text'
+				<% if configuration.required %>
+				,validate: function(value) {
+	      	if($.trim(value) == '') return 'Este campo é obrigatório';
+	      }
+			<% end %>
+	    });
+
+	});
+
+</script>

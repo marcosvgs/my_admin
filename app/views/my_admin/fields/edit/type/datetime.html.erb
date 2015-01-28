@@ -1,0 +1,11 @@
+<div class="bootstrap-timepicker">
+	
+	<% val = I18n.l(object.send(field), :format=> "%d/%m/%Y %H:%M") unless object.send(field).nil? %>
+	<%= form.hidden_field field, :value => val, :class => "datetime" %>
+	
+	<% val = I18n.l(object.send(field), :format=> "%d/%m/%Y") unless object.send(field).nil? %>
+	<input type="text" name="datepick" class="input-medium datepick" value="<%= val %>">
+	
+	<% val = I18n.l(object.send(field), :format=> "%H:%M") unless object.send(field).nil? %>
+	<input type="text" name="timepicker" class="input-small timepick" value="<%= val %>">
+</div>

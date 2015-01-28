@@ -1,0 +1,28 @@
+<div class="fileupload fileupload-new" data-provides="fileupload">
+	
+	<% if object.send(field).file? and File.exist?(object.send(field).path(:my_admin)) %>
+  
+	
+		<% geo = Paperclip::Geometry.from_file(object.send(field).path(:my_admin)) %>
+		<div class="fileupload-new thumbnail" style="width: <%= geo.width %>px; height: <%= geo.height %>px;">
+			<%= image_tag(object.send(field).url(:my_admin)) %>
+		</div>
+		
+	<% else %>
+		
+		<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+			<img src="<%= asset_path 'my_admin/no_image.gif' %>" />
+		</div>
+		
+	<% end %>
+	
+	<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+	<div>
+		<span class="btn btn-file">
+			<span class="fileupload-new">Selecionar Imagem</span>
+			<span class="fileupload-exists">Alterar Imagem</span>
+			<%= form.file_field field %>
+		</span>
+		<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+	</div>
+</div>

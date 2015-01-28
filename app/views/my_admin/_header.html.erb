@@ -1,0 +1,101 @@
+<div id="navigation">
+	<div class="container-fluid">
+		<%= link_to MyAdmin.title, send("#{admin_prefix}_path"), :id => "brand" %>
+		
+		<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+		<ul class='main-nav'>
+			<!-- <li class='active'> -->
+			<li>
+				<%= link_to content_tag(:span, "Dashboard"), send("#{admin_prefix}_path") %>
+			</li>
+			<% @applications.each do |application| %>
+				<% if application.can?(my_admin_user) %>
+					<li>
+						<% if application.models.count > 1 %>
+					
+							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+								<span><%= application.title %></span>
+								<span class="caret"></span>
+							</a>
+						
+							<ul class="dropdown-menu">
+								<% application.models.each do |model| %>
+									<% if model.my_admin.can?(:list, my_admin_user) %>
+										<li>
+											<%= link_to model.title_plural, model_link(application, model) %>
+										</li>
+									<% end %>
+								<% end %>
+							</ul>
+						
+						<% else %>
+						
+							<% application.models.each do |model| %>
+								<%= link_to content_tag(:span, model.title_plural), model_link(application, model) %>
+							<% end %>
+					
+						<% end %>
+					
+					</li>
+				<% end %>
+			<% end %>
+		</ul>
+		
+		<div class="user">
+			<ul class="icon-nav">
+				<li class='dropdown colo'>
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
+					<ul class="dropdown-menu pull-right theme-colors">
+						<li>
+							<span class='red'></span>
+							<span class='orange'></span>
+							<span class='green'></span>
+							<span class="brown"></span>
+							<span class="blue"></span>
+							<span class='lime'></span>
+							<span class="teal"></span>
+							<span class="purple"></span>
+							<span class="pink"></span>
+							<span class="magenta"></span>
+							<span class="grey"></span>
+							<span class="darkblue"></span>
+							<span class="lightred"></span>
+							<span class="lightgrey"></span>
+							<span class="satblue"></span>
+							<span class="satgreen"></span>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<%= link_to send("lock_#{admin_prefix}_sessions_path"), {:class => "lock-screen", "data-placement" => "bottom", :title => "Bloquear Tela", :rel => "tooltip"} do %> 
+						<i class="icon-lock"></i>
+					<% end %>
+				</li>
+				<% if my_admin_user.superuser %>
+				<li>
+					<%= link_to send("#{admin_prefix}_configuration_path"), {:class => "lock-screen", "data-placement" => "bottom", :title => "Configurações", :rel => "tooltip"} do %> 
+						<i class="icon-cog"></i>
+					<% end %>
+				</li>
+				<% end %>
+			</ul>
+			<div class="dropdown">
+				<a href="#" class='dropdown-toggle' data-toggle="dropdown"><%= my_admin_user.full_name %><%= image_tag(my_admin_user.photo.url(:mini)) %></a>
+				<ul class="dropdown-menu pull-right">
+					<li>
+						<%= link_to "Alterar senha", send("edit_#{admin_prefix}_password_path") %>
+					</li>
+					<!-- <li>
+						<a href="more-userprofile.html">Edit profile</a>
+					</li>
+					<li>
+						<a href="#">Account settings</a>
+					</li> -->
+					<li>
+						<%= link_to "Sair", send("#{admin_prefix}_sessions_path") %>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

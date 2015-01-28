@@ -1,0 +1,9 @@
+<% content_for :title do %><%= I18n.t('my_admin.titles.models.new', :model => @model.title) %><% end %>
+
+<div class="row-fluid">	
+	<div class="span12">
+		<div class="box box-bordered">
+			<%= render model_template(@application, @model, 'form'), { :url => model_link(@application, @model), :type => :new } %>
+		</div>
+	</div>
+</div>

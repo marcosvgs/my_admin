@@ -1,0 +1,43 @@
+<%= form_for(@item, :url => url, :html => { :multipart => true, :class => "form-horizontal form-bordered" } ) do |form| %>
+
+
+	<% unless @item.errors.blank? %>
+		<div class="alert alert-error">
+			<button class="close" data-dismiss="alert" type="button">×</button>
+			<%= form.error_messages %>
+	  </div>
+	<% end %>
+
+	<% @model.my_admin.fieldsets.each do |fieldset| %>	
+		<div class="box">
+			<% if fieldset.has_key? :name %>
+				<div class="box-title nomargin nobordertop">
+					<h3><i class="icon-file-alt"></i><%= fieldset_title(@application, @model, fieldset[:name]) %></h3>
+					<div class="actions">
+						<a class="btn btn-mini content-slideUp" href="#">
+							<i class="icon-angle-<%= (fieldset.has_key? :hide and fieldset[:hide] == true) ? "down" : "up" %>"></i>
+						</a>
+					</div>
+					
+				</div>
+			<% else %>
+				<div class="box-title">
+					<h3><i class="<%= type == :new ? 'icon-file-alt' : 'icon-edit' %>"></i><%= @model.title %></h3>
+				</div>
+			<% end %>
+		
+			<div class="box-content nopadding" style="<%= "display:none" if fieldset.has_key? :hide and fieldset[:hide] == true %>">
+				<% fieldset[:fields].each do |field| %>
+				  <%= edit_field_struct(@application, @model, field, @item, form ) %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+	
+  <div class="form-actions">
+
+    <%= form.submit form.object.new_record? ? I18n.t('my_admin.titles.models.new_back') : I18n.t('my_admin.titles.models.edit_back'), :class => "btn btn-success", :name => "commit_back" %> 
+    
+    <%= link_to("Cancelar", model_link(@application, @model), :class => "btn") %> 
+  </div>
+<% end %>

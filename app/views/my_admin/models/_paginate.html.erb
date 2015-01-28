@@ -1,0 +1,9 @@
+<div class="box-content nopadding">
+	<div class="pull-left">
+		<%= page_entries_info @objects %>
+	</div>
+
+	<div class="pull-right">
+		<%= will_paginate(@objects, :renderer => BootstrapLinkRenderer, :class => "pagination pagination-small") unless @objects.blank? %>
+	</div>
+</div>

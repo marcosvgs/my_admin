@@ -1,0 +1,321 @@
+1.	Instalando MyAdmin (Para novos Projetos)
+
+Adicione o código fonte em um diretório do projeto, ex: gems (Enquanto o MyAdmin não estiver em um repositório), e adicione a seguinte linha no arquivo GemFile:
+
+gem 'my_admin', git: 'git://github.com/marcosvgs/my_admin.git'
+
+Execute o comando ‘bundle’ para atualizar o Gemfile.lock.
+
+Após instalar a gem, é preciso copiar os arquivos do MyAdmin para sua aplicação, para isso execute o comando:
+
+rails g my_admin:install 
+
+O comando acima irá criar os seguintes arquivos:
+
+•	config/asset_packages.yml – Lista dos javascript e stylesheets (css) utilizado no MyAdmin, pode ser reaproveitado para ser utilizado em sua aplicação também. (Veja mais no Anexo A)
+•	config/initializers/my_admin.rb – Arquivo com as configurações do MyAdmin. Veja mais em Configurações Geral
+•	db/migrate/create_my_admin_*.rb – Migrações para criar as tabelas do MyAdmin.
+
+Execute ‘rake db:migrate’ para criar as tabelas do MyAdmin.
+
+Para finalizar execute o comando abaixo para criar os links simbólicos para os assets do MyAdmin.
+
+rails g my_admin:create_public
+
+Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://0.0.0.0:3000/admin’
+
+2.	Instalando MyAdmin ao Copiar Projeto (Github)
+
+Para instalar uma aplicação que já utiliza o MyAdmin basta executar o comando abaixo, além dos comando básico para instalar uma aplicação Rails:
+
+rails g my_admin:create_public
+ 
+
+3.	Configurações Geral
+
+As configurações do MyAdmin ficam no arquivo ‘config/initializers/my_admin.rb’. 
+
+•	Paperclip.options[:command_path] = Caminho dos executáveis do ImageMagick. (Para tratamento de imagens e arquivos)
+•	config.title – Título da sua aplicação 
+•	config.url_prefix – Caminho que o MyAdmin irá responder, padrão ‘admin’.
+
+Abaixo das configurações ficarão todos os modelos que o MyAdmin administrará.
+
+4.	Adicionar novo modelo no admin
+
+Para adicionar um novo modelo execute o seguinte comando:
+
+rails g my_admin:model <Nome do seu modelo>
+
+O comando acima irá adicionar uma nova linha no arquivo ‘config/initializers/my_admin.rb’ que irá informar ao MyAdmin que seu modelo será administrado.
+
+E será adicionado também o controller  ‘controllers/my_admin/<modulo>_controller.rb’ que será responsável pelas ações do MyAdmin. Portanto se precisar alterar alguma ação padrão (index, edit, update, new, create, destroy), é esse arquivo que será alterado. (Veja mais em Alterar Ações Existente)
+
+ 
+5.	Configurando Modelo
+
+Todas as configurações do modelo ficará dentro do próprio arquivo de modelo (app/models/*.rb), e ficará na seguinte estrutura:
+
+config_my_admin do |admin|
+    admin.application = "content"
+    admin.list_display = [:name]
+    admin.fieldsets = [{:fields => [:name, :content, :image]}]
+    admin.permissions = [:list, :update, :export]
+    admin.fields = {:name => {:type => :read_only}}
+end
+
+Ou seja todas as configurações ficam dentro da função ‘config_my_admin do |admin|‘
+
+Veja abaixo todas opções:
+
+•	admin.application
+
+Define qual grupo o Modelo pertence
+Tipo: String
+Ex: admin.application = “content”
+
+•	admin.list_display
+
+Lista que define quais serão os campos exibidos no grid de visualização (Index).
+Os itens da lista podem ser um campo de tabela, como também pode ser um método dentro do modelo.
+Tipo: Array
+Ex: admin.list_display = [:name, :email, :phone]
+
+•	admin.fieldsets
+
+Lista de hashs que define quais serão os fieldsets e seus respectivos campos exibidos nos formulários de criação e edição. 
+O hash podem conter os seguintes campos:
+
+o	fields – lista dos campos que o fieldset contem.
+Tipo: Array
+
+o	name – Nome do Fieldset, caso não seja definido, o nome não será exibido.
+Tipo: String
+
+Tipo: Array de Hash
+Ex: admin.fieldsets = [
+			     {:fields => [:name, :email, :phone]},
+			    {:fields => [:address, :number, :city, :state], :name => :location}
+]
+
+•	admin.permissions
+
+Lista das ações que os usuário poderão executar no modelo. As ações permitidas são (:list, :create, :update, :destroy, :export)
+Tipo: Array
+Ex: admin.permissions = [:list, :update, :export]
+
+•	admin.fields
+
+Customização e configurações mais especifica dos campos.
+
+As customizações disponíveis são:
+
+o	type:
+Tipo do campo (Veja mais em Tipo dos Campos)
+Tipo: String ou Symbol
+Ex: admin.fields = {:name => {:type => :text}}
+
+o	order:
+Define se o campo poderá ser ordenado ou não na grid de visualização.
+Tipo: Boolean
+Ex: admin.fields = { :image => {:order => false}}
+
+o	collection:
+Definição das opções de um campo do tipo Lista (combo_box, ou list box)
+Tipo: Procedure
+Ex: admin.fields = { :gender => {:type => :list_string, :collection => Proc.new { ["Masculino", "Feminino"] }} }
+
+o	start_blank:
+Define se o campo do tipo Lista terá um valor em branco ou não.
+Tipo: Boolean
+Ex: admin.fields = { :gender => {:type => :list_string , :start_blank => false, :collection => Proc.new { ["Masculino", "Feminino"] }} }
+
+o	class:
+Nome da classe do Objeto
+Tipo: String
+Ex: admin.fields = { :gender => {:class => “large”} }
+
+o	can_add:
+Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+Tipo: Boolean
+Ex: admin.fields = { :languages => { :type => :has_many_edit, :can_add => false, :can_destroy => false } }
+
+o	can_destroy:
+Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+Tipo: Boolean
+Ex: admin.fields = { :languages => { :type => :has_many_edit, :can_add => false, :can_destroy => false } }
+
+o	read_only:
+Define se o usuário pode editar/adicionar/remover os itens em um campo do tipo has_many_edit
+Tipo: Boolean
+Ex: admin.fields = { languages => { :type => :has_many_edit, :read_only => true } }
+
+o	rows:
+Define a quantidade de linhas um campo do tipo text terá.
+Tipo: Integer
+Ex: admin.fields = { :description => { :rows => 5 }}
+
+o	filter_type:
+Tipo do campo nos filtros (Veja mais em Tipo dos Campos)
+Tipo: String ou Symbol
+Ex: admin.fields = {:name => {:filter_type => :text}}
+
+o	onchange:
+Executa uma instrução javascript ao alterar o valor de um campo do tipo lista.
+Tipo: String
+Ex: admin.fields = { :unidade => {:onchange => "ChangeForm();” } }
+
+o	remote:
+Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
+Hash com dois valores: 
+-	field: Campo que será alterado
+-	collection: Procedure que irá preenche as opções do campo destino. 
+Tipo: Hash
+Ex: admin.fields = {
+:state => {
+        :type => :belongs_to, 
+        :filter_type => :default,
+        :collection => Proc.new { State.all.map { |i| [i.to_s, i.id] } },
+        :remote => {
+          :field => "city",
+          :collection => Proc.new { |value| City.all(:conditions => {:state_id => value}).map { |i| [i.to_s, i.id] } },
+        }
+      }
+}
+
+Obs.: As customizações podem ser adicionadas em um único Hash.
+	
+•	admin.export_display
+Lista que define quais serão os campos exibidos ao exportar. Por padrão irá exportar os mesmo campos definidos no list_display.
+Os itens da lista podem ser um campo de tabela, como também pode ser um método dentro do modelo.
+Tipo: Array
+Ex: admin.export_display = [:name, :email, :phone]
+
+•	admin.per_page
+Define a quantidade de item que será exibido por página no grid de visualizações. Por padrão o valor é 10.
+Tipo: Integer
+Ex: admin.per_page = 20
+
+•	admin.collection
+Define as ações de class adicionais. [{Post ou Get}, nome da ação]
+Tipo: Array
+Ex: admin.collection = [
+      		[:post, :approve],
+      		[:post, :disapprove]
+]
+
+•	admin.member
+
+Define as ações do objeto adicionais. [{Post ou Get}, nome da ação]
+Tipo: Array
+
+Ex: admin. member = [
+      		[:post, :up],
+      		[:post, :block]
+]
+
+
+6.	Tipo dos Campos
+
+Por padrão o MyAdmin considera o tipo do campo igual o tipo do objeto retornado, ou definido na base de dados.
+Os tipos de campos disponíveis são:
+
+•	belongs_to
+•	boolean
+•	clear_text 
+(Campo do tipo text sem utilizar o plugin ckeditor)
+•	color
+•	date
+•	datetime
+•	decimal
+•	default 
+(Campos do tipo string)
+•	email
+•	file
+•	float
+•	has_many
+•	has_many_edit
+•	has_many_locale
+•	integer
+•	list
+•	list_string
+•	money
+•	paperclip/attachment 
+(Campos do tipo imagem)
+•	password
+•	read_only
+•	text 
+(Campo do tipo text usando o plugin ckeditor)
+•	time
+
+Customizando os Campos
+
+Caso os campos não atendem a demanda, é possível criar novos tipos, ou customizar campos específicos.
+
+Por exemplo, para criar um novo campo do tipo unidade, precisamos criar três novas views para o MyAdmin renderizar:
+
+•	/app/views/my_admin/fields/edit/type/unidade.html.erb
+Que irá exibir no formulário de editar e alterar.
+As variáveis disponíveis são:
+
+o	model: Modelo que está editando ou criado.
+o	field: campo que está sendo renderizado
+o	form: formulário que será enviado.
+o	object: Objeto que está sendo criado ou editado.
+
+•	/app/views/my_admin/fields/type/unidade.html.erb
+Quer irá exibir no grid de visualização.
+As variáveis disponíveis são:
+
+o	model: Modelo que está visualizando.
+o	field: campo que está sendo renderizado
+o	object: Objeto que está visualizando.
+
+•	/app/views/my_admin/fields/filter/unidade.hmtl.erb
+Quer irá exibir no formulário de filtro.
+As variáveis disponíveis são:
+
+o	model: Modelo que está visualizando.
+o	field: campo que está sendo renderizado
+
+A estrutura acima pode ser utilizada para alterar um tipo já existente. Alterando o nome Unidade, para Text, por exemplo.
+
+Para customizar um campo especifico, deve seguir a mesma estrutura de criar um novo tipo de campo, com pequenas modificações da estrutura. Por exemplo, vamos customizar o campo ‘phone’:
+
+•	/app/views/my_admin/fields/edit/phone.html.erb
+•	/app/views/my_admin/fields/phone.html.erb
+•	/app/views/my_admin/fields/filter/phone.html.erb
+
+No caso acima você alterará todos os campos que tiverem o nome ‘phone’ de todos os modelos do admin.
+
+Porém se você desejar alterar os campos somente de uma grupo, siga a estrutura abaixo, com exemplo de que o grupo se chama “contatos”.
+
+•	/app/views/my_admin/contatos/fields/edit/phone.html.erb
+•	/app/views/my_admin/contatos/fields/phone.html.erb
+•	/app/views/my_admin/contatos/fields/filter/phone.html.erb
+
+O mesmo serve para criar ou editar um tipo de campo para um grupo.
+
+•	/app/views/my_admin/contatos/fields/edit/type/unidade.html
+•	/app/views/my_admin/contatos/fields/type/unidade.html
+•	/app/views/my_admin/contatos/fields/filter/type/unidade.html
+
+Ainda existe a possibilidade de customizar um campo de um modelo especifico. Veja o exemplo abaixo do modelo “User“ dentro do grupo de “contatos”.
+
+•	/app/views/my_admin/contatos/users/fields/edit/phone.html.erb
+•	/app/views/my_admin/contatos/users/fields/phone.html.erb
+•	/app/views/my_admin/contatos/users/fields/filter/phone.html.erb
+
+O mesmo para tipo de campo.
+
+•	/app/views/my_admin/contatos/users/fields/edit/type/unidade.html
+•	/app/views/my_admin/contatos/users/fields/type/unidade.html
+•	/app/views/my_admin/contatos/users/fields/filter/type/unidade.html
+
+Obs.: A pasta do modelo deve ser o mesmo nome da tabela do modelo.
+
+Caso precise alterar a estrutura da área do qualquer campo, é possível criando o arquivo com o mesmo nome porém com _struct na frente. Ex: /app/views/my_admin/fields/edit/type/unidade_struct.html.erb
+
+Para ver como cada tipo de campo se comporta por padrão, acesse os arquivos no diretório/gems/my_admin/views/my_admin/fields/.
+
+Obs: Caso um dos arquivos não seja criado, o MyAdmin irá utilizar a view do tipo default.

@@ -1,0 +1,17 @@
+<% content_for :title do %>Configurações<% end %>
+
+<script type='text/javascript'>
+	$(function () {
+	  //defaults
+	  $.fn.editable.defaults.url = '<%= send("#{admin_prefix}_configuration_path") %>';
+		$.fn.editable.defaults.ajaxOptions = {type: "put"}
+	});
+</script>
+
+<div class="row-fluid">	
+	<div class="span12">
+		<div class="box box-bordered">
+			<%= render "my_admin/configurations/form" %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,8 @@
+<% klass = field_setting(model, field, :class) %>
+<% klass = "input-block-level" if klass.blank? %>
+
+<% rows = field_setting(model, field, :rows) %>
+<% rows = "5" if rows.blank? %>
+
+
+<%= form.text_area field, :class => klass, :rows => rows  %>

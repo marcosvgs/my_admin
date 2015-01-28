@@ -1,0 +1,27 @@
+<% content_for :body_class do %>login<% end %>
+	
+<div class="login-body">
+	<h2>Alterar Senha</h2>
+	
+	
+	<%#= form_for @user, :as => :post, :url => send("#{admin_prefix}_sessions_recover_path", params[:id]), :method => :put, :html => { :class => "form-validate", :id => "login" } do |f| %>	
+	<%= form_for @user, :as => :recover, :url => send("#{admin_prefix}_sessions_recover_path", params[:id]), :html => { :class => "form-validate", :id => "login" } do |f| %>	
+		
+		
+		<div class="control-group">
+			<div class="controls">
+				<%= f.password_field :password, {:class => "input-block-level", :placeholder => field_title(MyAdmin::User, "password"), 'data-rule-required' => true, 'data-rule-minlength' => 6 } %>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<%= f.password_field :password_confirmation, {:class => "input-block-level", :placeholder => field_title(MyAdmin::User, "password_confirmation"), 'data-rule-required' => true, 'data-rule-minlength' => 6, "data-rule-equalto" => "#recover_password" } %>
+			</div>
+		</div>
+		
+		<div class="submit">
+			<%= f.submit "Enviar", :class => "btn btn-primary" %>
+		</div>
+	<% end %>
+</div>

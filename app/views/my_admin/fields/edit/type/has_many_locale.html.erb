@@ -1,0 +1,40 @@
+<% has_many_model = model.reflections[field.to_sym].klass %>
+<% @locales ||= MyAdmin::Locale.all %>
+<div class="tabs">
+  <ul>
+  <% @locales.each do |locale| %>
+    <li class="locale_<%= locale.acronym %>">
+      <a href="#locale_<%= locale.acronym %>">
+        <%= locale.name %>
+      </a>
+    </li>
+  <% end %>
+  </ul>
+
+  <% 
+    @locales.each do |locale|
+      item = nil
+      object.send(field.to_sym).each do |obj|
+        item = obj if obj.locale_id == locale.id
+      end 
+      if item.blank?
+        item = object.send(field.to_sym).build 
+        item.locale = locale
+      end
+  %>
+    <div id="locale_<%= locale.acronym %>">
+      <%= form.fields_for(field, item) do |has_many_form| %>
+        <%= has_many_form.hidden_field :locale_id %>
+        <% has_many_model.my_admin.fieldsets.each do |has_many_fieldset| %>
+      		<%= content_tag(:fieldset) do %>
+      			<%= content_tag(:legend, fieldset_title(application, has_many_model, has_many_fieldset[:name])) if has_many_fieldset.has_key? :name %>
+      			<% has_many_fieldset[:fields].each do |has_many_field| %>
+      			  <%= edit_field_struct(application, has_many_model, has_many_field, item, has_many_form ) %>
+      			<% end %>
+      		<% end %>
+      	<% end %>
+      <% end %>
+    </div>
+  
+  <% end %>
+</div>
