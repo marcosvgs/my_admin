@@ -71,12 +71,12 @@ Veja abaixo todas opções:
 
 * admin.application
 
-Define qual grupo o Modelo pertence
-Tipo: String
+  Define qual grupo o Modelo pertence
+  Tipo: String
 
-```ruby
-admin.application = “content”
-```
+  ```ruby
+  admin.application = “content”
+  ```
 
 * admin.list_display
 
