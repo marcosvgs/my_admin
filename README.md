@@ -1,3 +1,7 @@
+# MyAdmin [![Gem Version](https://badge.fury.io/rb/my_admin.svg)](http://badge.fury.io/rb/my_admin)
+
+> Um admin para Ruby on Rails
+
 ## Instalando MyAdmin
 
 Adicione em seu GemFile:
