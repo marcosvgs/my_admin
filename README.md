@@ -1,6 +1,6 @@
 ## Instalando MyAdmin (Para novos Projetos)
 
-Adicione o código fonte em um diretório do projeto, ex: gems (Enquanto o MyAdmin não estiver em um repositório), e adicione a seguinte linha no arquivo GemFile:
+Adicione em seu GemFile:
 
 ```ruby
 gem 'my_admin', git: 'git://github.com/marcosvgs/my_admin.git'
