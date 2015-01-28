@@ -241,7 +241,7 @@ Veja abaixo todas opções:
     `Field`: Campo que será alterado
 
     `Collection`: Procedure que irá preenche as opções do campo destino. 
-    
+
     Tipo: Hash
 
     ```ruby
@@ -261,7 +261,9 @@ Veja abaixo todas opções:
   Obs.: As customizações podem ser adicionadas em um único Hash.
 	
 * admin.export_display
+
   Lista que define quais serão os campos exibidos ao exportar. Por padrão irá exportar os mesmo campos definidos no list_display.
+
   Os itens da lista podem ser um campo de tabela, como também pode ser um método dentro do modelo.
   Tipo: Array
 
@@ -270,6 +272,7 @@ Veja abaixo todas opções:
   ```
 
 * admin.per_page
+
   Define a quantidade de item que será exibido por página no grid de visualizações. Por padrão o valor é 10.
   Tipo: Integer
 
@@ -278,6 +281,7 @@ Veja abaixo todas opções:
   ```
 
 * admin.collection
+
   Define as ações de class adicionais. [{Post ou Get}, nome da ação]
   Tipo: Array
 
@@ -289,6 +293,7 @@ Veja abaixo todas opções:
   ```
 
 * admin.member
+
   Define as ações do objeto adicionais. [{Post ou Get}, nome da ação]
   Tipo: Array
 
