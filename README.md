@@ -1,4 +1,6 @@
-# MyAdmin [![Gem Version](https://badge.fury.io/rb/my_admin.svg)](http://badge.fury.io/rb/my_admin)
+# MyAdmin [![Gem Version](https://badge.fury.io/rb/my_admin.svg)](http://badge.fury.io/rb/my_admin) 
+
+[![PayPayl donate button](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=28BWBUS3SRU8G&lc=BR&item_name=Support%20our%20open%2dsource%20initiatives&item_number=GadboxOpenS&currency_code=BRL&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted "Donate once-off to this project using Paypal")
 
 > Um admin para Ruby on Rails
 
