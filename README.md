@@ -80,198 +80,198 @@ Veja abaixo todas opções:
 
 * admin.list_display
 
-Lista que define quais serão os campos exibidos no grid de visualização (Index).
-Os itens da lista podem ser um campo de tabela, como também pode ser um método dentro do modelo.
-Tipo: Array
+  Lista que define quais serão os campos exibidos no grid de visualização (Index).
+  Os itens da lista podem ser um campo de tabela, como também pode ser um método dentro do modelo.
+  Tipo: Array
 
-```ruby
-admin.list_display = [:name, :email, :phone]
-```
+  ```ruby
+  admin.list_display = [:name, :email, :phone]
+  ```
 
 * admin.fieldsets
 
-Lista de hashs que define quais serão os fieldsets e seus respectivos campos exibidos nos formulários de criação e edição. 
-O hash podem conter os seguintes campos:
+  Lista de hashs que define quais serão os fieldsets e seus respectivos campos exibidos nos formulários de criação e edição. 
+  O hash podem conter os seguintes campos:
 
-- fields: lista dos campos que o fieldset contem.
-Tipo: Array
+  - fields: lista dos campos que o fieldset contem.
+  Tipo: Array
 
--	name: Nome do Fieldset, caso não seja definido, o nome não será exibido.
-Tipo: String
+  -	name: Nome do Fieldset, caso não seja definido, o nome não será exibido.
+  Tipo: String
 
-Tipo: Array de Hash
+  Tipo: Array de Hash
 
-```ruby
-admin.fieldsets = [
-	{:fields => [:name, :email, :phone]},
-	{:fields => [:address, :number, :city, :state], :name => :location}
-]
-```
+  ```ruby
+  admin.fieldsets = [
+  	{:fields => [:name, :email, :phone]},
+  	{:fields => [:address, :number, :city, :state], :name => :location}
+  ]
+  ```
 
 * admin.permissions
 
-Lista das ações que os usuário poderão executar no modelo. As ações permitidas são (:list, :create, :update, :destroy, :export)
-Tipo: Array
+  Lista das ações que os usuário poderão executar no modelo. As ações permitidas são (:list, :create, :update, :destroy, :export)
+  Tipo: Array
 
-```ruby
-admin.permissions = [:list, :update, :export]
-```
+  ```ruby
+  admin.permissions = [:list, :update, :export]
+  ```
 
 * admin.fields
 
-Customização e configurações mais especifica dos campos.
+  Customização e configurações mais especifica dos campos.
 
-As customizações disponíveis são:
+  As customizações disponíveis são:
 
--	type:
-Tipo do campo (Veja mais em Tipo dos Campos)
-Tipo: String ou Symbol
+  -	type:
+    Tipo do campo (Veja mais em Tipo dos Campos)
+    Tipo: String ou Symbol
 
-```ruby
-admin.fields = {:name => {:type => :text}}
-```
+    ```ruby
+    admin.fields = {:name => {:type => :text}}
+    ```
 
--	order:
-Define se o campo poderá ser ordenado ou não na grid de visualização.
-Tipo: Boolean
- 
-```ruby
-admin.fields = { :image => {:order => false}}
-```
+  -	order:
+    Define se o campo poderá ser ordenado ou não na grid de visualização.
+    Tipo: Boolean
+     
+    ```ruby
+    admin.fields = { :image => {:order => false}}
+    ```
 
-- collection:
-Definição das opções de um campo do tipo Lista (combo_box, ou list box)
-Tipo: Procedure
+  - collection:
+    Definição das opções de um campo do tipo Lista (combo_box, ou list box)
+    Tipo: Procedure
 
-```ruby
-admin.fields = { :gender => {:type => :list_string, :collection => Proc.new { ["Masculino", "Feminino"] }} }
-```
+    ```ruby
+    admin.fields = { :gender => {:type => :list_string, :collection => Proc.new { ["Masculino", "Feminino"] }} }
+    ```
 
--	start_blank:
-Define se o campo do tipo Lista terá um valor em branco ou não.
-Tipo: Boolean
+  -	start_blank:
+    Define se o campo do tipo Lista terá um valor em branco ou não.
+    Tipo: Boolean
 
-```ruby
-admin.fields = { :gender => {:type => :list_string , :start_blank => false, :collection => Proc.new { ["Masculino", "Feminino"] }} }
-```
+    ```ruby
+    admin.fields = { :gender => {:type => :list_string , :start_blank => false, :collection => Proc.new { ["Masculino", "Feminino"] }} }
+    ```
 
--	class:
-Nome da classe do Objeto
-Tipo: String
+  -	class:
+    Nome da classe do Objeto
+    Tipo: String
 
-```ruby
-admin.fields = { :gender => {:class => “large”} }
-```
+    ```ruby
+    admin.fields = { :gender => {:class => “large”} }
+    ```
 
--	can_add:
-Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
-Tipo: Boolean
+  -	can_add:
+    Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+    Tipo: Boolean
 
-```ruby
-admin.fields = { :languages => { :type => :has_many_edit, :can_add => false, :can_destroy => false } }
-```
+    ```ruby
+    admin.fields = { :languages => { :type => :has_many_edit, :can_add => false, :can_destroy => false } }
+    ```
 
--	can_destroy:
-Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
-Tipo: Boolean
+  -	can_destroy:
+    Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+    Tipo: Boolean
 
-```ruby
-admin.fields = { :languages => { :type => :has_many_edit, :can_add => false, :can_destroy => false } }
-```
+    ```ruby
+    admin.fields = { :languages => { :type => :has_many_edit, :can_add => false, :can_destroy => false } }
+    ```
 
--	read_only:
-Define se o usuário pode editar/adicionar/remover os itens em um campo do tipo has_many_edit
-Tipo: Boolean
+  -	read_only:
+    Define se o usuário pode editar/adicionar/remover os itens em um campo do tipo has_many_edit
+    Tipo: Boolean
 
-```ruby
-admin.fields = { languages => { :type => :has_many_edit, :read_only => true } }
-```
+    ```ruby
+    admin.fields = { languages => { :type => :has_many_edit, :read_only => true } }
+    ```
 
--	rows:
-Define a quantidade de linhas um campo do tipo text terá.
-Tipo: Integer
+  -	rows:
+    Define a quantidade de linhas um campo do tipo text terá.
+    Tipo: Integer
 
-```ruby
-admin.fields = { :description => { :rows => 5 }}
-```
+    ```ruby
+    admin.fields = { :description => { :rows => 5 }}
+    ```
 
-- filter_type:
-Tipo do campo nos filtros (Veja mais em Tipo dos Campos)
-Tipo: String ou Symbol
+  - filter_type:
+    Tipo do campo nos filtros (Veja mais em Tipo dos Campos)
+    Tipo: String ou Symbol
 
-```ruby
-admin.fields = {:name => {:filter_type => :text}}
-```
+    ```ruby
+    admin.fields = {:name => {:filter_type => :text}}
+    ```
 
--	onchange:
-Executa uma instrução javascript ao alterar o valor de um campo do tipo lista.
-Tipo: String
+  -	onchange:
+    Executa uma instrução javascript ao alterar o valor de um campo do tipo lista.
+    Tipo: String
 
-```ruby
-admin.fields = { :unidade => {:onchange => "ChangeForm();” } }
-```
+    ```ruby
+    admin.fields = { :unidade => {:onchange => "ChangeForm();” } }
+    ```
 
--	remote:
-Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
-Hash com dois valores: 
-`Field`: Campo que será alterado
-`Collection`: Procedure que irá preenche as opções do campo destino. 
-Tipo: Hash
+  -	remote:
+    Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
+    Hash com dois valores: 
+    `Field`: Campo que será alterado
+    `Collection`: Procedure que irá preenche as opções do campo destino. 
+    Tipo: Hash
 
-```ruby
-admin.fields = {
-  :state => {
-    :type => :belongs_to, 
-    :filter_type => :default,
-    :collection => Proc.new { State.all.map { |i| [i.to_s, i.id] } },
-    :remote => {
-      :field => "city",
-      :collection => Proc.new { |value| City.all(:conditions => {:state_id => value}).map { |i| [i.to_s, i.id] } },
+    ```ruby
+    admin.fields = {
+      :state => {
+        :type => :belongs_to, 
+        :filter_type => :default,
+        :collection => Proc.new { State.all.map { |i| [i.to_s, i.id] } },
+        :remote => {
+          :field => "city",
+          :collection => Proc.new { |value| City.all(:conditions => {:state_id => value}).map { |i| [i.to_s, i.id] } },
+        }
+      }
     }
-  }
-}
-```
+    ```
 
-Obs.: As customizações podem ser adicionadas em um único Hash.
+  Obs.: As customizações podem ser adicionadas em um único Hash.
 	
-- admin.export_display
-Lista que define quais serão os campos exibidos ao exportar. Por padrão irá exportar os mesmo campos definidos no list_display.
-Os itens da lista podem ser um campo de tabela, como também pode ser um método dentro do modelo.
-Tipo: Array
+* admin.export_display
+  Lista que define quais serão os campos exibidos ao exportar. Por padrão irá exportar os mesmo campos definidos no list_display.
+  Os itens da lista podem ser um campo de tabela, como também pode ser um método dentro do modelo.
+  Tipo: Array
 
-```ruby
-admin.export_display = [:name, :email, :phone]
-```
+  ```ruby
+  admin.export_display = [:name, :email, :phone]
+  ```
 
--	admin.per_page
-Define a quantidade de item que será exibido por página no grid de visualizações. Por padrão o valor é 10.
-Tipo: Integer
+* admin.per_page
+  Define a quantidade de item que será exibido por página no grid de visualizações. Por padrão o valor é 10.
+  Tipo: Integer
 
-```ruby
-admin.per_page = 20
-```
+  ```ruby
+  admin.per_page = 20
+  ```
 
-- admin.collection
-Define as ações de class adicionais. [{Post ou Get}, nome da ação]
-Tipo: Array
+* admin.collection
+  Define as ações de class adicionais. [{Post ou Get}, nome da ação]
+  Tipo: Array
 
-```ruby
-admin.collection = [
-	[:post, :approve],
-	[:post, :disapprove]
-]
-```
+  ```ruby
+  admin.collection = [
+  	[:post, :approve],
+  	[:post, :disapprove]
+  ]
+  ```
 
-- admin.member
-Define as ações do objeto adicionais. [{Post ou Get}, nome da ação]
-Tipo: Array
+* admin.member
+  Define as ações do objeto adicionais. [{Post ou Get}, nome da ação]
+  Tipo: Array
 
-```ruby
-admin. member = [
-  [:post, :up],
-  [:post, :block]
-]
-```
+  ```ruby
+  admin. member = [
+    [:post, :up],
+    [:post, :block]
+  ]
+  ```
 
 
 ## Tipo dos Campos
