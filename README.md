@@ -125,7 +125,7 @@ Veja abaixo todas opções:
 
   -	type:
 
-    Tipo do campo (Veja mais em Tipo dos Campos)
+    Descrição: Tipo do campo (Veja mais em Tipo dos Campos)
 
     Tipo: String ou Symbol
 
@@ -135,8 +135,8 @@ Veja abaixo todas opções:
 
   -	order:
 
-    Define se o campo poderá ser ordenado ou não na grid de visualização.
-    
+    Descrição: Define se o campo poderá ser ordenado ou não na grid de visualização.
+
     Tipo: Boolean
      
     ```ruby
@@ -144,7 +144,9 @@ Veja abaixo todas opções:
     ```
 
   - collection:
-    Definição das opções de um campo do tipo Lista (combo_box, ou list box)
+    
+    Descrição: Definição das opções de um campo do tipo Lista (combo_box, ou list box)
+
     Tipo: Procedure
 
     ```ruby
@@ -152,7 +154,9 @@ Veja abaixo todas opções:
     ```
 
   -	start_blank:
-    Define se o campo do tipo Lista terá um valor em branco ou não.
+
+    Descrição: Define se o campo do tipo Lista terá um valor em branco ou não.
+
     Tipo: Boolean
 
     ```ruby
@@ -160,7 +164,9 @@ Veja abaixo todas opções:
     ```
 
   -	class:
-    Nome da classe do Objeto
+
+    Descrição: Nome da classe do Objeto
+
     Tipo: String
 
     ```ruby
@@ -168,7 +174,9 @@ Veja abaixo todas opções:
     ```
 
   -	can_add:
-    Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+
+    Descrição: Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+
     Tipo: Boolean
 
     ```ruby
@@ -176,7 +184,9 @@ Veja abaixo todas opções:
     ```
 
   -	can_destroy:
-    Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+
+    Descrição: Define se o usuário pode adicionar novos itens em um campo do tipo has_many_edit.
+
     Tipo: Boolean
 
     ```ruby
@@ -184,7 +194,9 @@ Veja abaixo todas opções:
     ```
 
   -	read_only:
-    Define se o usuário pode editar/adicionar/remover os itens em um campo do tipo has_many_edit
+
+    Descrição: Define se o usuário pode editar/adicionar/remover os itens em um campo do tipo has_many_edit
+
     Tipo: Boolean
 
     ```ruby
@@ -192,7 +204,9 @@ Veja abaixo todas opções:
     ```
 
   -	rows:
-    Define a quantidade de linhas um campo do tipo text terá.
+
+    Descrição: Define a quantidade de linhas um campo do tipo text terá.
+
     Tipo: Integer
 
     ```ruby
@@ -201,7 +215,8 @@ Veja abaixo todas opções:
 
   - filter_type:
 
-    Tipo do campo nos filtros (Veja mais em Tipo dos Campos)
+    Descrição: Tipo do campo nos filtros (Veja mais em Tipo dos Campos)
+
     Tipo: String ou Symbol
 
     ```ruby
@@ -210,7 +225,8 @@ Veja abaixo todas opções:
 
   -	onchange:
 
-    Executa uma instrução javascript ao alterar o valor de um campo do tipo lista.
+    Descrição: Executa uma instrução javascript ao alterar o valor de um campo do tipo lista.
+
     Tipo: String
 
     ```ruby
@@ -219,10 +235,13 @@ Veja abaixo todas opções:
 
   -	remote:
 
-    Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
+    Descrição: Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
     Hash com dois valores: 
+
     `Field`: Campo que será alterado
+
     `Collection`: Procedure que irá preenche as opções do campo destino. 
+    
     Tipo: Hash
 
     ```ruby
