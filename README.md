@@ -1,3 +1,7 @@
+# MyAdmin [![Gem Version](https://badge.fury.io/rb/my_admin.svg)](http://badge.fury.io/rb/my_admin)
+
+> Um admin para Ruby on Rails
+
 ## Instalando MyAdmin (Para novos Projetos)
 
 Adicione em seu GemFile:
@@ -27,14 +31,14 @@ Para finalizar execute o comando abaixo para criar os links simbólicos para os 
 rails g my_admin:create_public
 ```
 
-Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://0.0.0.0:3000/admin’ 
+Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://0.0.0.0:3000/admin’
 
 ## Configurações Geral
 
-As configurações do MyAdmin ficam no arquivo ‘config/initializers/my_admin.rb’. 
+As configurações do MyAdmin ficam no arquivo ‘config/initializers/my_admin.rb’.
 
 * `Paperclip.options[:command_path]` - Caminho dos executáveis do ImageMagick. (Para tratamento de imagens e arquivos)
-* `config.title` – Título da sua aplicação 
+* `config.title` – Título da sua aplicação
 * `config.url_prefix` – Caminho que o MyAdmin irá responder, padrão ‘admin’.
 
 Abaixo das configurações ficarão todos os modelos que o MyAdmin administrará.
@@ -50,7 +54,7 @@ rails g my_admin:model <Nome do seu modelo>
 O comando acima irá adicionar uma nova linha no arquivo ‘config/initializers/my_admin.rb’ que irá informar ao MyAdmin que seu modelo será administrado.
 
 E será adicionado também o controller  ‘controllers/my_admin/<model>_controller.rb’ que será responsável pelas ações do MyAdmin. Portanto se precisar alterar alguma ação padrão (index, edit, update, new, create, destroy), é esse arquivo que será alterado. (Veja mais em Alterar Ações Existente)
- 
+
 ## Configurando Modelo
 
 Todas as configurações do modelo ficará dentro do próprio arquivo de modelo (app/models/*.rb), e ficará na seguinte estrutura:
@@ -90,7 +94,7 @@ Veja abaixo todas opções:
 
 * admin.fieldsets
 
-  Lista de hashs que define quais serão os fieldsets e seus respectivos campos exibidos nos formulários de criação e edição. 
+  Lista de hashs que define quais serão os fieldsets e seus respectivos campos exibidos nos formulários de criação e edição.
   O hash podem conter os seguintes campos:
 
   - fields: lista dos campos que o fieldset contem.
@@ -138,13 +142,13 @@ Veja abaixo todas opções:
     Descrição: Define se o campo poderá ser ordenado ou não na grid de visualização.
 
     Tipo: Boolean
-     
+
     ```ruby
     admin.fields = { :image => {:order => false}}
     ```
 
   - collection:
-    
+
     Descrição: Definição das opções de um campo do tipo Lista (combo_box, ou list box)
 
     Tipo: Procedure
@@ -236,18 +240,18 @@ Veja abaixo todas opções:
   -	remote:
 
     Descrição: Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
-    Hash com dois valores: 
+    Hash com dois valores:
 
     `Field`: Campo que será alterado
 
-    `Collection`: Procedure que irá preenche as opções do campo destino. 
+    `Collection`: Procedure que irá preenche as opções do campo destino.
 
     Tipo: Hash
 
     ```ruby
     admin.fields = {
       :state => {
-        :type => :belongs_to, 
+        :type => :belongs_to,
         :filter_type => :default,
         :collection => Proc.new { State.all.map { |i| [i.to_s, i.id] } },
         :remote => {
@@ -259,7 +263,7 @@ Veja abaixo todas opções:
     ```
 
   Obs.: As customizações podem ser adicionadas em um único Hash.
-	
+
 * admin.export_display
 
   Lista que define quais serão os campos exibidos ao exportar. Por padrão irá exportar os mesmo campos definidos no list_display.
@@ -342,7 +346,7 @@ Por exemplo, para criar um novo campo do tipo unidade, precisamos criar três no
 
 * /app/views/my_admin/fields/edit/type/unidade.html.erb
   Que irá exibir no formulário de editar e alterar.
-  
+
   As variáveis disponíveis são:
   - `model`: Modelo que está editando ou criado.
   - `field`: campo que está sendo renderizado
@@ -351,7 +355,7 @@ Por exemplo, para criar um novo campo do tipo unidade, precisamos criar três no
 
 * /app/views/my_admin/fields/type/unidade.html.erb
   Quer irá exibir no grid de visualização.
-  
+
   As variáveis disponíveis são:
   - `model`: Modelo que está visualizando.
   -	`field`: campo que está sendo renderizado
@@ -359,7 +363,7 @@ Por exemplo, para criar um novo campo do tipo unidade, precisamos criar três no
 
 * /app/views/my_admin/fields/filter/unidade.hmtl.erb
   Que irá exibir no formulário de filtro.
-  
+
   As variáveis disponíveis são:
   -	`model`: Modelo que está visualizando.
   -	`field`: campo que está sendo renderizado
