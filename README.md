@@ -1,4 +1,4 @@
-## Instalando MyAdmin (Para novos Projetos)
+## Instalando MyAdmin
 
 Adicione em seu GemFile:
 
@@ -27,7 +27,7 @@ Para finalizar execute o comando abaixo para criar os links simbólicos para os 
 rails g my_admin:create_public
 ```
 
-Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://0.0.0.0:3000/admin’ 
+Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://localhost:3000/admin’ 
 
 ## Configurações Geral
 
