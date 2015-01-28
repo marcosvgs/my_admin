@@ -27,13 +27,7 @@ O comando acima irá criar os seguintes arquivos:
 
 Execute ‘rake db:migrate’ para criar as tabelas do MyAdmin.
 
-Para finalizar execute o comando abaixo para criar os links simbólicos para os assets do MyAdmin.
-
-```console
-rails g my_admin:create_public
-```
-
-Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://localhost:3000/admin’ 
+Inicie sua aplicação ‘rails s’. Assim o MyAdmin já estará disponível em ‘http://localhost:3000/admin’ 
 
 ## Configurações Geral
 
