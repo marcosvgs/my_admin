@@ -9,7 +9,7 @@
 Adicione em seu GemFile:
 
 ```ruby
-gem 'my_admin', git: 'git://github.com/marcosvgs/my_admin.git'
+gem 'my_admin'
 ```
 
 Execute o comando ‘bundle’ para atualizar o Gemfile.lock.
