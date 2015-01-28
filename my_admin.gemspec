@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.email       = ["marcosvgs@gmail.com"]
   s.homepage    = ""
   s.summary     = "MyAdmin"
-  s.description = "MyAdmin"
+  s.description = "Content Manager for RoR"
 
   s.rubyforge_project = "my_admin"
-  
+
   s.add_dependency "rails",           "~> 4.1.0"
   s.add_dependency "breadcrumbs"  ,   "~> 0.1.6"
   s.add_dependency "dynamic_form" ,   "~> 1.1.4"

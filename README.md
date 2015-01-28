@@ -2,7 +2,7 @@
 
 > Um admin para Ruby on Rails
 
-## Instalando MyAdmin (Para novos Projetos)
+## Instalando MyAdmin
 
 Adicione em seu GemFile:
 
@@ -31,7 +31,7 @@ Para finalizar execute o comando abaixo para criar os links simbólicos para os 
 rails g my_admin:create_public
 ```
 
-Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://0.0.0.0:3000/admin’
+Após criar os assets, rode sua aplicação ‘rails s’. Assim o my_admin já estará disponível em ‘http://localhost:3000/admin’
 
 ## Configurações Geral
 
@@ -107,8 +107,8 @@ Veja abaixo todas opções:
 
   ```ruby
   admin.fieldsets = [
-  	{:fields => [:name, :email, :phone]},
-  	{:fields => [:address, :number, :city, :state], :name => :location}
+    {:fields => [:name, :email, :phone]},
+    {:fields => [:address, :number, :city, :state], :name => :location}
   ]
   ```
 
@@ -291,8 +291,8 @@ Veja abaixo todas opções:
 
   ```ruby
   admin.collection = [
-  	[:post, :approve],
-  	[:post, :disapprove]
+    [:post, :approve],
+    [:post, :disapprove]
   ]
   ```
 
@@ -409,3 +409,36 @@ Caso precise alterar a estrutura da área do qualquer campo, é possível criand
 Para ver como cada tipo de campo se comporta por padrão, acesse os arquivos no diretório/gems/my_admin/views/my_admin/fields/.
 
 Obs: Caso um dos arquivos não seja criado, o MyAdmin irá utilizar a view do tipo default.
+
+## Contribuir
+
+Veja o [guia de contribuição](https://github.com/marcosvgs/my_admin/blob/master/CONTRIBUTING.md)
+
+## Suporte
+Se você tiver qualquer problema ou sugestão, por favor abra uma issue [aqui](https://github.com/marcosvgs/my_admin/issues).
+
+## Licença
+
+The MIT License (MIT)
+
+Copyright (c) 2015, Marcos Vinicius von Gal dos Santos
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+=======
