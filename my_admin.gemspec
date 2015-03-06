@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "spreadsheet",     "~> 1.0.0"
   s.add_dependency "htmlentities",    "~> 4.3.2"
   s.add_dependency "ckeditor",        "~> 4.1.1"
+  s.add_dependency "nprogress-rails", "~> 0.1.6"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
