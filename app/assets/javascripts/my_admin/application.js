@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require nprogress
-//= require nprogress-turbolinks
 //= require ckeditor/init
 //= require my_admin/plugins/nicescroll/jquery.nicescroll.min
 //= require my_admin/plugins/validation/jquery.validate.min

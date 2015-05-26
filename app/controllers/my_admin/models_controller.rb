@@ -44,7 +44,9 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
           @objects = filter_filter(@application, @model, field, @objects)
         end
       end
+
       per_page = params[:per_page] || @model.my_admin.per_page
+      per_page = @model.my_admin.per_page if params[:per_page].to_i <= 0 rescue @model.my_admin.per_page
       
       @objects = @objects.paginate(:per_page => per_page, :page => params[:page])
       

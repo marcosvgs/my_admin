@@ -15,7 +15,7 @@ module MyAdmin
           if params[:order_by].present? and params[:order].present?
             order("#{params[:order_by]} #{params[:order]}")
           else
-            where()
+            where("")
           end
         end
 
@@ -23,7 +23,7 @@ module MyAdmin
           if params[field].present? and !params[field].blank?
             where("#{model.table_name}.#{field} like ?", "%#{params[field]}%")
           else
-            where()
+            where("")
           end
         end
 
@@ -31,7 +31,7 @@ module MyAdmin
           if params["#{field.to_s.singularize}_id"].present? and params["#{field.to_s.singularize}_id"].to_i > 0
             where("#{model.table_name}.#{field.to_s.singularize}_id" => params["#{field.to_s.singularize}_id"].to_i)
           else
-            where()
+            where("")
           end
         end
 
@@ -39,7 +39,7 @@ module MyAdmin
           if params[field].present? and !params[field].blank?
             where("#{model.table_name}.#{field}" => (params[field] == "true"))
           else
-            where()
+            where("")
           end
         end
 
@@ -47,7 +47,7 @@ module MyAdmin
           if params[field].present? and !params[field].blank?
             where("#{model.table_name}.#{field} = :date", {:date => (params[field].to_date rescue nil)})
           else
-            where()
+            where("")
           end
         end
       end 

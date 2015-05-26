@@ -163,14 +163,14 @@ module MyAdminFieldHelper
   
   def filter_filter(application, model, field, objects)
     
-    if @objects.respond_to? "my_admin_filter_#{field}"
-      @objects = @objects.send("my_admin_filter_#{field}", params[@model.underscore])
+    if objects.respond_to? "my_admin_filter_#{field}"
+      objects = objects.send("my_admin_filter_#{field}", params[model.underscore])
     else
       object_type = filter_field_type(application, model, field)
-      if @objects.respond_to? "my_admin_filter_type_#{object_type}"
-        @objects.send("my_admin_filter_type_#{object_type}", @model, field, params[@model.underscore])
+      if objects.respond_to? "my_admin_filter_type_#{object_type}"
+        objects.send("my_admin_filter_type_#{object_type}", model, field, params[model.underscore])
       else
-        @objects = @objects.my_admin_filter(@model, field, params[@model.underscore])
+        objects = objects.my_admin_filter(model, field, params[model.underscore])
       end
     end
     

@@ -10,9 +10,10 @@ Gem::Specification.new do |s|
   s.email       = ["marcosvgs@gmail.com"]
   s.homepage    = ""
   s.summary     = "MyAdmin"
-  s.description = "MyAdmin"
+  s.description = "Content Manager for RoR"
 
   s.rubyforge_project = "my_admin"
+  s.required_ruby_version = ">= 1.9.3"
   
   s.add_dependency "rails",           "~> 4.1.0"
   s.add_dependency "breadcrumbs"  ,   "~> 0.1.6"
@@ -22,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_dependency "spreadsheet",     "~> 1.0.0"
   s.add_dependency "htmlentities",    "~> 4.3.2"
   s.add_dependency "ckeditor",        "~> 4.1.1"
-  s.add_dependency "nprogress-rails", "~> 0.1.6"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
