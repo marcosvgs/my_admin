@@ -12,6 +12,7 @@ class MyAdmin::Group < ActiveRecord::Base
   
   
   config_my_admin do |admin|
+    admin.application = "authentication"
     admin.list_display = [:name, :description]
     admin.fieldsets = [{:fields => [:name, :description]},
                        {:name => :permissions,

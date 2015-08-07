@@ -10,6 +10,7 @@ class MyAdmin::Log < ActiveRecord::Base
   }
   
   config_my_admin do |admin|
+    admin.application = "authentication"
     admin.list_display = [:user, :application_name, :model_name, :action_name, :object, :created_at]
     admin.filters = []
     admin.permissions = [:list]

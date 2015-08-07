@@ -110,7 +110,7 @@
     opacity: 0;
   }
 }
-.pg-pulse-frames 0% {
+/*.pg-pulse-frames 0% {
   -webkit-transform: rotate(0) scale(1) skew(0) translate(0);
   -moz-transform: rotate(0) scale(1) skew(0) translate(0);
   -o-transform: rotate(0) scale(1) skew(0) translate(0);
@@ -129,7 +129,7 @@
   -o-border-radius: 20px;
   border-radius: 20px;
   opacity: 0;
-}
+}*/
 /* Mixins
 ================================================== */
 .pg-disable-select {

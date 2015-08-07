@@ -34,6 +34,7 @@ class MyAdmin::User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png'], :allow_nil => true
 
   config_my_admin do |admin|
+    admin.application = "authentication"
     admin.list_display = [:full_name, :username, :email, :superuser, :active]
     admin.filters = [:full_name, :username, :email]
     admin.export_display = [:full_name, :username, :email, :superuser_export, :active_export ]
