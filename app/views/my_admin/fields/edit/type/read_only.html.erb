@@ -1,5 +1,5 @@
 <% type = "default" %>
-<% type = model.reflections[field.to_sym].macro if model.reflections.has_key? field.to_sym %>
+<% type = model.reflections[field.to_s].macro if model.reflections.has_key? field.to_s %>
 <% klass = field_setting(model, field, :class) %>
 
 <%= form.text_field field, :disabled => true, :class => klass %>

@@ -1,5 +1,5 @@
 <%
-	@collection = model.reflections[field.to_sym].klass.all
+	@collection = model.reflections[field.to_s].klass.all
 	@field_name = "#{field.to_s.singularize}_ids"
 		
 	@options = @collection.map { |i| [i.to_s, i.id] } 

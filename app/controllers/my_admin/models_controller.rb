@@ -160,7 +160,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       end
     end
     
-    @collection ||= @model.reflections[params[:field].to_sym].klass.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
+    @collection ||= @model.reflections[params[:field].to_s].klass.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
     render_model_template(:remote)
   end
   
