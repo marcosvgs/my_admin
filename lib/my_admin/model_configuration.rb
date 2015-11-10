@@ -6,7 +6,7 @@ module MyAdmin
     def initialize(klass)
       begin
         @class = klass
-        @application = "authentication"
+        @application = "content"
         @permissions = [:list, :create, :update, :destroy, :export]
         if @class.table_exists?
           @list_display = (klass.columns.map{ |c| c.name } - ['id', 'created_at', 'updated_at']) #, 'created_at', 'updated_at'])

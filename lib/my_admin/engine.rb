@@ -4,8 +4,10 @@ class Engine < Rails::Engine
   
   # paths.app << File.join(path, "app")
 
+  config.assets.precompile += %w( ckeditor/* )
   config.assets.precompile += %w( my_admin/application.css, my_admin/application_locked.css, my_admin/application_off.css )
   config.assets.precompile += %w( my_admin/application.js, my_admin/application_locked.js, my_admin/application_off.js )
+  config.assets.precompile += %w( my_admin_application.js, my_admin_application_locked.js, my_admin_application_off.js )
 
   config.to_prepare do
     ActionView::Base.send :include, MyAdminHelper

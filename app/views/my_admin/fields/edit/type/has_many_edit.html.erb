@@ -1,6 +1,6 @@
-<% has_many_model = model.reflections[field.to_sym].klass %>
+<% has_many_model = model.reflections[field.to_s].klass %>
 
-<% limit = model.reflections[field.to_sym].options[:limit] || 0 %>
+<% limit = model.reflections[field.to_s].options[:limit] || 0 %>
 
 <% can_destroy = field_setting(model, field, :can_destroy) %>
 <% can_add = field_setting(model, field, :can_add) %>

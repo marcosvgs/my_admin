@@ -44,7 +44,9 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
           @objects = filter_filter(@application, @model, field, @objects)
         end
       end
+
       per_page = params[:per_page] || @model.my_admin.per_page
+      per_page = @model.my_admin.per_page if params[:per_page].to_i <= 0 rescue @model.my_admin.per_page
       
       @objects = @objects.paginate(:per_page => per_page, :page => params[:page])
       
@@ -158,7 +160,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       end
     end
     
-    @collection ||= @model.reflections[params[:field].to_sym].klass.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
+    @collection ||= @model.reflections[params[:field].to_s].klass.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
     render_model_template(:remote)
   end
   

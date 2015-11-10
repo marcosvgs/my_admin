@@ -20,7 +20,7 @@ module MyAdminFieldHelper
     unless block.blank?
       collection  = instance_exec object, &(block) 
     else
-  	  collection ||= model.reflections[field.to_sym].klass.all.map { |i| [i.to_s, i.id] } unless model.reflections[field.to_sym].blank?
+  	  collection ||= model.reflections[field.to_s].klass.all.map { |i| [i.to_s, i.id] } unless model.reflections[field.to_s].blank?
     end
   	collection ||= []
   	collection
@@ -44,7 +44,7 @@ module MyAdminFieldHelper
 
     object_type = object.send(field).class.name.underscore unless object.blank?
     object_type = column.type unless column.blank?
-    object_type = model.reflections[field.to_sym].macro if model.reflections.has_key? field.to_sym
+    object_type = model.reflections[field.to_s].macro if model.reflections.has_key? field.to_s
     object_type = field_setting(model, field, :type) unless field_setting(model, field, :type).blank?
     object_type
     
@@ -56,7 +56,7 @@ module MyAdminFieldHelper
 
     object_type = object.send(field).class.name.underscore unless object.blank?
     object_type = column.type unless column.blank?
-    object_type = model.reflections[field.to_sym].macro if model.reflections.has_key? field.to_sym
+    object_type = model.reflections[field.to_s].macro if model.reflections.has_key? field.to_s
     object_type = field_setting(model, field, :type) unless field_setting(model, field, :type).blank?
     object_type = field_setting(model, field, :filter_type) unless field_setting(model, field, :filter_type).blank?
     object_type
@@ -163,14 +163,14 @@ module MyAdminFieldHelper
   
   def filter_filter(application, model, field, objects)
     
-    if @objects.respond_to? "my_admin_filter_#{field}"
-      @objects = @objects.send("my_admin_filter_#{field}", params[@model.underscore])
+    if objects.respond_to? "my_admin_filter_#{field}"
+      objects = objects.send("my_admin_filter_#{field}", params[model.underscore])
     else
       object_type = filter_field_type(application, model, field)
-      if @objects.respond_to? "my_admin_filter_type_#{object_type}"
-        @objects.send("my_admin_filter_type_#{object_type}", @model, field, params[@model.underscore])
+      if objects.respond_to? "my_admin_filter_type_#{object_type}"
+        objects.send("my_admin_filter_type_#{object_type}", model, field, params[model.underscore])
       else
-        @objects = @objects.my_admin_filter(@model, field, params[@model.underscore])
+        objects = objects.my_admin_filter(model, field, params[model.underscore])
       end
     end
     

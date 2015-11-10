@@ -1,4 +1,4 @@
-<% has_many_model = model.reflections[field.to_sym].klass %>
+<% has_many_model = model.reflections[field.to_s].klass %>
 <% @locales ||= MyAdmin::Locale.all %>
 <div class="tabs">
   <ul>

@@ -9,3 +9,11 @@
 .show_color{
   height: 20px;
 }
+
+#nprogress .spinner{
+    top: 55px;
+}
+
+#nprogress .bar{
+    background: #31B4FF;
+}
