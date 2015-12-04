@@ -49,13 +49,22 @@ class MyAdmin::User < ActiveRecord::Base
                     :password => {:type => :password}, 
                     :password_confirmation => {:type => :password}}
   end
-  scope :my_admin_order_full_name, lambda { |params|
-    { :order => "first_name #{params[:order]}, last_name #{params[:order]}" } if params[:order].present?
+
+  scope :my_admin_order_full_name, ->(params){ 
+    order("first_name #{params[:order]}, last_name #{params[:order]}") if params[:order].present?
   }
+
+  scope :my_admin_filter_full_name, ->(params){ 
+    where("concat_ws(' ',first_name,last_name) like ?", "%#{params[:full_name]}%") if params[:full_name].present?
+  }
+
+  # scope :my_admin_order_full_name, lambda { |params|
+  #   { :order => "first_name #{params[:order]}, last_name #{params[:order]}" } if params[:order].present?
+  # }
   
-  scope :my_admin_filter_full_name, lambda { |params|
-    { :conditions => ["concat_ws(' ',first_name,last_name) like ?", "%#{params[:full_name]}%"] } if params[:full_name].present?
-  }
+  # scope :my_admin_filter_full_name, lambda { |params|
+  #   { :conditions => ["concat_ws(' ',first_name,last_name) like ?", "%#{params[:full_name]}%"] } if params[:full_name].present?
+  # }
   
   def permissions
     @permissions ||= MyAdmin::Permission.by_user(self.id)

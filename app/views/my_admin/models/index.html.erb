@@ -25,7 +25,7 @@
 							<%#= I18n.t('my_admin.titles.models.new', :model => @model.title) %>
 						<% end if @model.my_admin.can?(:create, my_admin_user) %>
 
-				    <%= link_to(collection_model_link(@application, @model, :export), :class => "btn btn-inverse") do %>
+				    <%= link_to(collection_model_link(@application, @model, :export, params.clone), :class => "btn btn-inverse") do %>
 							<i class="glyphicon-file_export"></i>
 							<%= I18n.t('my_admin.titles.models.export', :model => @model.title) %>
 						<% end if @model.my_admin.can?(:export, my_admin_user) %>

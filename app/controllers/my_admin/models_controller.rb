@@ -14,6 +14,12 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
         @objects = @model.order("#{@model.table_name}.#{@model.primary_key} desc")
       end
 
+      if not @model.my_admin.filters.blank? and not params[@model.underscore].blank?
+        @model.my_admin.filters.each do |field|
+          @objects = filter_filter(@application, @model, field, @objects)
+        end
+      end
+
       headers = []
       only = @model.my_admin.export_display
   
