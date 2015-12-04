@@ -12,7 +12,7 @@ class MyAdmin::Permission < ActiveRecord::Base
     application.title + ">" + self.model.constantize.title + " - " + I18n.t("my_admin.permissions.#{self.name}") 
   end
   
-  scope :by_user, ->(user_id){ joins({:groups => [:users]).where("my_admin_users.id" => user_id) }
+  scope :by_user, ->(user_id){ joins({:groups => [:users]}).where("my_admin_users.id" => user_id) }
 
   # scope :by_user, lambda { |user_id|
     # { :joins => {:groups => [:users]}, :conditions => {"my_admin_users.id" => user_id} }
