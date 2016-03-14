@@ -50,6 +50,24 @@ module MyAdmin
             where("")
           end
         end
+
+        def self.my_admin_filter_type_date_between(model, field, params)
+          field_name_from = "#{field}_from"
+          field_name_to = "#{field}_to"
+
+          condition = ""
+          if params[field_name_from].present? and !params[field_name_from].blank?
+            condition += "#{model.table_name}.#{field} >= :date_from"
+          end
+
+          if params[field_name_to].present? and !params[field_name_to].blank?
+            condition += " and " unless condition.blank?
+            condition += "#{model.table_name}.#{field} <= :date_to"
+          end
+          where(condition, { :date_from => ( params[field_name_from].to_datetime.beginning_of_day rescue nil ),
+                             :date_to => ( params[field_name_to].to_datetime.end_of_day rescue nil ) })
+        end
+
       end 
     end
     
