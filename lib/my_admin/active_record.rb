@@ -72,9 +72,8 @@ module MyAdmin
             condition += " and " unless condition.blank?
             condition += "#{model.table_name}.#{field} <= :date_to"
           end
-
           where(condition, { :date_from => ( params[field_name_from].to_datetime.beginning_of_day rescue nil ),
-            :date_to => ( params[field_name_to].to_datetime.end_of_day rescue nil ) })
+                             :date_to => ( params[field_name_to].to_datetime.end_of_day rescue nil ) })
         end
 
 
@@ -96,7 +95,6 @@ module MyAdmin
           end
 
           where(condition, { :integer_from => field_value_from, :integer_to => field_value_to })
-        end
 
       end 
     end
