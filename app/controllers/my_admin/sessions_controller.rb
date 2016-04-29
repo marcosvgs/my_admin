@@ -1,7 +1,7 @@
 class MyAdmin::SessionsController < MyAdmin::MyAdminController
   
   def new
-    redirect_to send("#{admin_prefix}_path") if my_admin_signed_in?
+    redirect_to send("#{admin_prefix}_root_path") if my_admin_signed_in?
     redirect_to send("unlock_#{admin_prefix}_sessions_path") if my_admin_locked?
   end
   
@@ -13,7 +13,7 @@ class MyAdmin::SessionsController < MyAdmin::MyAdminController
     else
       if user.is_active?
         my_admin_sign_in user
-        redirect_to send("#{admin_prefix}_path")
+        redirect_to send("#{admin_prefix}_root_path")
       else
         flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.inactive_user")
         render :new
@@ -32,7 +32,7 @@ class MyAdmin::SessionsController < MyAdmin::MyAdminController
   end
   
   def unlock
-    redirect_to send("#{admin_prefix}_path") if my_admin_signed_in?
+    redirect_to send("#{admin_prefix}_root_path") if my_admin_signed_in?
     redirect_to send("new_#{admin_prefix}_sessions_path") if !my_admin_locked?
   end
   
@@ -44,7 +44,7 @@ class MyAdmin::SessionsController < MyAdmin::MyAdminController
     else
       if user.is_active?
         my_admin_sign_in user
-        redirect_to send("#{admin_prefix}_path")
+        redirect_to send("#{admin_prefix}_root_path")
       else
         flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.inactive_user")
         my_admin_sign_out

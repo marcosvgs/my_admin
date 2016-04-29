@@ -1,6 +1,5 @@
 class CreateMyAdminConfigurations < ActiveRecord::Migration
-
-  def self.up
+  def change
     create_table :my_admin_configurations do |t|
       
       t.string :key
@@ -14,9 +13,4 @@ class CreateMyAdminConfigurations < ActiveRecord::Migration
       
     end
   end
-
-  def self.down
-    drop_table :my_admin_configurations
-  end
-
 end

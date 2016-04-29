@@ -20,6 +20,8 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
         end
       end
 
+      @objects = @objects.my_admin_default_scope if @objects.respond_to? :my_admin_default_scope
+
       headers = []
       only = @model.my_admin.export_display
   
@@ -54,6 +56,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       per_page = params[:per_page] || @model.my_admin.per_page
       per_page = @model.my_admin.per_page if params[:per_page].to_i <= 0 rescue @model.my_admin.per_page
       
+      @objects = @objects.my_admin_default_scope if @objects.respond_to? :my_admin_default_scope
       @objects = @objects.paginate(:per_page => per_page, :page => params[:page])
       
       cache_my_admin_params
@@ -188,18 +191,19 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
     end
   
     def get_model
-      @application = MyAdmin::Application.find_by_url(request.url.split("?")[0].split(request.host_with_port).last.split("/")[2]) #(params[:application])
-      @model = @application.find_model_by_url(request.url.split("?")[0].split(request.host_with_port).last.split("/")[3]) #(params[:model])
+      position = admin_prefix.blank? ? 1 : 2
+      @application = MyAdmin::Application.find_by_url(request.url.split("?")[0].split(request.host_with_port).last.split("/")[position]) #(params[:application])
+      @model = @application.find_model_by_url(request.url.split("?")[0].split(request.host_with_port).last.split("/")[position + 1]) #(params[:model])
     end
   
     def add_breadcrumbs
-      breadcrumbs.add('my_admin_home', send("#{admin_prefix}_path"))
+      breadcrumbs.add('my_admin_home', send("#{admin_prefix}_root_path"))
       breadcrumbs.add(@model.title_plural, (params[:action] == 'index') ? nil : model_link(@application, @model))
     end
     
     def verify_permission (permission)
       unless @model.my_admin.can?(permission, my_admin_user)
-        redirect_to send("#{admin_prefix}_path")
+        redirect_to send("#{admin_prefix}_root_path")
         false
       else
         true

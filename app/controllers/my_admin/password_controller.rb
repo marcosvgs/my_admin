@@ -9,7 +9,7 @@ class MyAdmin::PasswordController < MyAdmin::MyAdminController
   def update
     @user = MyAdmin::User.find(my_admin_user.id)
     if (@user.update_attributes(password_params))
-      redirect_to send("#{admin_prefix}_path"), :flash => { :notice => I18n.t("my_admin.messages.user.password_changed") }
+      redirect_to send("#{admin_prefix}_root_path"), :flash => { :notice => I18n.t("my_admin.messages.user.password_changed") }
     else
       render :edit
     end
@@ -18,7 +18,7 @@ class MyAdmin::PasswordController < MyAdmin::MyAdminController
 private
 
   def add_breadcrumbs
-    breadcrumbs.add('my_admin_home', send("#{admin_prefix}_path"))
+    breadcrumbs.add('my_admin_home', send("#{admin_prefix}_root_path"))
     breadcrumbs.add('change_password')
   end
   

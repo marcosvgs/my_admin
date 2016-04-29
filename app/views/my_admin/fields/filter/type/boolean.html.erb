@@ -1,5 +1,5 @@
 <%
-	@collection = [['Todos', nil],['Não', false],['Sim', true]]
-	@selected = params[model.underscore][field] if params[model.underscore].present? and params[model.underscore][field].present?
+	collection = [['Todos', nil],['Não', false],['Sim', true]]
+	selected = params[model.underscore][field] if params[model.underscore].present? and params[model.underscore][field].present?
 %>
-<%= select_tag "#{model.underscore}[#{field.to_s}]", options_for_select(@collection, @selected) %>
+<%= select_tag "#{model.underscore}[#{field.to_s}]", options_for_select(collection, selected) %>

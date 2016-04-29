@@ -31,7 +31,7 @@ class MyAdmin::RecoversController < MyAdmin::MyAdminController
     if (@user.update_attributes(recovers_params))
       @user.update_attribute(:encrypted_recover, nil)
       my_admin_sign_in @user
-      redirect_to send("#{admin_prefix}_path"), :flash => { :notice => I18n.t("my_admin.messages.user.password_changed") }
+      redirect_to send("#{admin_prefix}_root_path"), :flash => { :notice => I18n.t("my_admin.messages.user.password_changed") }
     else
       render :show
     end
@@ -50,7 +50,7 @@ class MyAdmin::RecoversController < MyAdmin::MyAdminController
     end
   
     def verify_login
-      redirect_to send("#{admin_prefix}_path") if my_admin_signed_in?
+      redirect_to send("#{admin_prefix}_root_path") if my_admin_signed_in?
       redirect_to send("unlock_#{admin_prefix}_sessions_path") if my_admin_locked?
     end
     

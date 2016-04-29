@@ -1,0 +1,3 @@
+<% if @model.my_admin.can?(:destroy, my_admin_user) or @model.my_admin.can?(:update, my_admin_user) %>
+  <th></th>
+<% end %>

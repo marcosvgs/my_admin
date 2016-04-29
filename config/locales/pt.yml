@@ -34,7 +34,7 @@ pt:
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
-      short: "%d/%m/%y"
+      short: "%d/%m/%Y"
       long: "%d de %B de %Y"
       day_month: "%d de %B"
       only_month: "%B"

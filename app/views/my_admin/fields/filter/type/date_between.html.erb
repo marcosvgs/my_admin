@@ -1,0 +1,14 @@
+<% field_name_from = "#{field}_from" %>
+<% field_name_to = "#{field}_to" %>
+
+<% val = nil %>
+<% val = params[model.underscore][field_name_from] if params[model.underscore].present? and params[model.underscore][field_name_from].present? %>
+
+<%= text_field_tag "#{model.underscore}[#{field_name_from}]", val, :class => "datepick" %>
+até
+
+
+<% val = nil %>
+<% val = params[model.underscore][field_name_to] if params[model.underscore].present? and params[model.underscore][field_name_to].present? %>
+
+<%= text_field_tag "#{model.underscore}[#{field_name_to}]", val, :class => "datepick" %>

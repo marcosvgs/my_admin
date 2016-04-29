@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   
   namespace MyAdmin.url_prefix, :module => "my_admin" do
-    root :to => "dashboards#index", :as => ""
+    
+    root :to => "dashboards#index", :as => "root"
     
     resource :configuration, :only => [:update, :show]
     

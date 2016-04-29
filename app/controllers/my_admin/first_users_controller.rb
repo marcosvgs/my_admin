@@ -11,7 +11,7 @@ class MyAdmin::FirstUsersController < MyAdmin::MyAdminController
     if @user.save
       my_admin_sign_in @user
       flash[:notice] = I18n.t("my_admin.messages.user.created")
-      redirect_to send("#{admin_prefix}_path")
+      redirect_to send("#{admin_prefix}_root_path")
     else
       render :new
     end

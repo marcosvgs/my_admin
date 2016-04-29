@@ -2,7 +2,7 @@
 <div id="header" class="row">
   <div class="span8">
     <h1 class="r">
-      <%= link_to MyAdmin.title, send("#{admin_prefix}_path")  %>
+      <%= link_to MyAdmin.title, send("#{admin_prefix}_root_path")  %>
     </h1>
   </div>
    

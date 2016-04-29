@@ -9,7 +9,7 @@ class MyAdmin::DashboardsController < MyAdmin::MyAdminController
   private
   
     def add_breadcrumbs
-      breadcrumbs.add('my_admin_home', send("#{admin_prefix}_path"))
+      breadcrumbs.add('my_admin_home', send("#{admin_prefix}_root_path"))
     end
   
 end

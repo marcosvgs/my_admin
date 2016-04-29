@@ -376,27 +376,27 @@ No caso acima você alterará todos os campos que tiverem o nome ‘phone’ de 
 
 Porém se você desejar alterar os campos somente de uma grupo, siga a estrutura abaixo, com exemplo de que o grupo se chama “contatos”.
 
-* /app/views/my_admin/contatos/fields/edit/phone.html.erb
-* /app/views/my_admin/contatos/fields/phone.html.erb
-* /app/views/my_admin/contatos/fields/filter/phone.html.erb
+* /app/views/my_admin/applications/contatos/fields/edit/phone.html.erb
+* /app/views/my_admin/applications/contatos/fields/phone.html.erb
+* /app/views/my_admin/applications/contatos/fields/filter/phone.html.erb
 
 O mesmo serve para criar ou editar um tipo de campo para um grupo.
 
-* /app/views/my_admin/contatos/fields/edit/type/unidade.html
-* /app/views/my_admin/contatos/fields/type/unidade.html
-* /app/views/my_admin/contatos/fields/filter/type/unidade.html
+* /app/views/my_admin/applications/contatos/fields/edit/type/unidade.html
+* /app/views/my_admin/applications/contatos/fields/type/unidade.html
+* /app/views/my_admin/applications/contatos/fields/filter/type/unidade.html
 
-Ainda existe a possibilidade de customizar um campo de um modelo especifico. Veja o exemplo abaixo do modelo “User“ dentro do grupo de “contatos”.
+Ainda existe a possibilidade de customizar um campo de um modelo especifico. Veja o exemplo abaixo do modelo “User“.
 
-* /app/views/my_admin/contatos/users/fields/edit/phone.html.erb
-* /app/views/my_admin/contatos/users/fields/phone.html.erb
-* /app/views/my_admin/contatos/users/fields/filter/phone.html.erb
+* /app/views/my_admin/models/users/fields/edit/phone.html.erb
+* /app/views/my_admin/models/users/fields/phone.html.erb
+* /app/views/my_admin/models/users/fields/filter/phone.html.erb
 
 O mesmo para tipo de campo.
 
-* /app/views/my_admin/contatos/users/fields/edit/type/unidade.html
-* /app/views/my_admin/contatos/users/fields/type/unidade.html
-* /app/views/my_admin/contatos/users/fields/filter/type/unidade.html
+* /app/views/my_admin/models/users/fields/edit/type/unidade.html
+* /app/views/my_admin/models/users/fields/type/unidade.html
+* /app/views/my_admin/models/users/fields/filter/type/unidade.html
 
 Obs.: A pasta do modelo deve ser o mesmo nome da tabela do modelo.
 

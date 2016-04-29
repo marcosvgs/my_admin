@@ -1,5 +1,5 @@
 class CreateMyAdminLogs < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :my_admin_logs do |t|
       t.integer :user_id, :null => false
       t.string :object, :null => false
@@ -11,9 +11,5 @@ class CreateMyAdminLogs < ActiveRecord::Migration
     end
     
     add_index :my_admin_logs, :user_id
-  end
-
-  def self.down
-    drop_table :my_admin_logs
   end
 end

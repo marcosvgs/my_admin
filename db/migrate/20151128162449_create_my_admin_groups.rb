@@ -1,5 +1,5 @@
 class CreateMyAdminGroups < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :my_admin_groups do |t|
       t.string :name, :limit => 30, :null => false
       t.text :description
@@ -8,9 +8,5 @@ class CreateMyAdminGroups < ActiveRecord::Migration
     end
     
     add_index :my_admin_groups, :name, :unique => true
-  end
-
-  def self.down
-    drop_table :my_admin_groups
   end
 end

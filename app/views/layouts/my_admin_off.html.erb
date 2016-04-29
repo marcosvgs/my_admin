@@ -40,7 +40,7 @@
 	<body class="<%= yield(:body_class) %> theme-darkblue" data-theme="theme-darkblue">
   	<div class="wrapper">
 			<h1>
-				<%= link_to send("#{admin_prefix}_path") do %>
+				<%= link_to send("#{admin_prefix}_root_path") do %>
 					<img src="<%= asset_path 'my_admin/logo-big.png' %>" alt="" class='retina-ready' width="59" height="49"><%= MyAdmin.title %>
 				<% end %>
 			</h1>

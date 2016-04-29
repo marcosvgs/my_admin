@@ -25,8 +25,8 @@ module MyAdminModelHelper
   end
   
   def model_template(application, model, action)
-    template = "my_admin/#{application.key}/#{model.model_tableize}/#{action}"
-    template = "my_admin/#{application.key}/models/#{action}" if !lookup_context.exists? template, [], true and !lookup_context.exists? template, [], false
+    template = "my_admin/models/#{model.model_tableize}/#{action}"
+    template = "my_admin/applications/#{application.key}/models/#{action}" if !lookup_context.exists? template, [], true and !lookup_context.exists? template, [], false
     template = "my_admin/models/#{action}" if !lookup_context.exists? template, [], true and !lookup_context.exists? template, [], false
     template
   end

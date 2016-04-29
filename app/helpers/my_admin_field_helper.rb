@@ -64,90 +64,90 @@ module MyAdminFieldHelper
   end
   
   def edit_field_struct(application, model, field, object, form, show_label=true)
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/edit/#{field}_struct"
-    template = "my_admin/#{application.key}/fields/edit/#{field}_struct" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/edit/#{field}_struct"
+    template = "my_admin/applications/#{application.key}/fields/edit/#{field}_struct" unless lookup_context.exists? template
     template = "my_admin/fields/edit/#{field}_struct" unless lookup_context.exists? template
     
     object_type = field_type(application, model, field, object)
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/edit/type/#{object_type}_struct" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/edit/type/#{object_type}_struct" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/edit/type/#{object_type}_struct" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/edit/type/#{object_type}_struct" unless lookup_context.exists? template
     template = "my_admin/fields/edit/type/#{object_type}_struct" unless lookup_context.exists? template
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/edit/type/default_struct" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/edit/type/default_struct" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/edit/type/default_struct" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/edit/type/default_struct" unless lookup_context.exists? template
     template = "my_admin/fields/edit/type/default_struct" unless lookup_context.exists? template
 
     render :template => template, :locals => {:show_label => show_label, :application => application, :model => model, :field => field, :object => object, :form => form }
   end
   
   def field_content(application, model, field, object)
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/#{field}"
-    template = "my_admin/#{application.key}/fields/#{field}" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/#{field}"
+    template = "my_admin/applications/#{application.key}/fields/#{field}" unless lookup_context.exists? template
     template = "my_admin/fields/#{field}" unless lookup_context.exists? template
     
     object_type = field_type(application, model, field, object)
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/type/#{object_type}" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/type/#{object_type}" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/type/#{object_type}" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/type/#{object_type}" unless lookup_context.exists? template
     template = "my_admin/fields/type/#{object_type}" unless lookup_context.exists? template
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/type/default" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/type/default" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/type/default" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/type/default" unless lookup_context.exists? template
     template = "my_admin/fields/type/default" unless lookup_context.exists? template
     
     render :template => template, :locals => {:application => application, :model => model, :field => field, :object => object }
   end
   
   def edit_field_content(application, model, field, object, form)
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/edit/#{field}"
-    template = "my_admin/#{application.key}/fields/edit/#{field}" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/edit/#{field}"
+    template = "my_admin/applications/#{application.key}/fields/edit/#{field}" unless lookup_context.exists? template
     template = "my_admin/fields/edit/#{field}" unless lookup_context.exists? template
     
     object_type = field_type(application, model, field, object)
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/edit/type/#{object_type}" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/edit/type/#{object_type}" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/edit/type/#{object_type}" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/edit/type/#{object_type}" unless lookup_context.exists? template
     template = "my_admin/fields/edit/type/#{object_type}" unless lookup_context.exists? template
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/edit/type/default" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/edit/type/default" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/edit/type/default" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/edit/type/default" unless lookup_context.exists? template
     template = "my_admin/fields/edit/type/default" unless lookup_context.exists? template
 
     render :template => template, :locals => {:application => application, :model => model, :field => field, :object => object, :form => form }
   end
   
   def filter_field_struct(application, model, field, object, show_label=true)
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/filter/#{field}_struct"
-    template = "my_admin/#{application.key}/fields/filter/#{field}_struct" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/filter/#{field}_struct"
+    template = "my_admin/applications/#{application.key}/fields/filter/#{field}_struct" unless lookup_context.exists? template
     template = "my_admin/fields/filter/#{field}_struct" unless lookup_context.exists? template
     
     object_type = filter_field_type(application, model, field, object)
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/filter/type/#{object_type}_struct" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/filter/type/#{object_type}_struct" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/filter/type/#{object_type}_struct" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/filter/type/#{object_type}_struct" unless lookup_context.exists? template
     template = "my_admin/fields/filter/type/#{object_type}_struct" unless lookup_context.exists? template
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/filter/type/default_struct" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/filter/type/default_struct" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/filter/type/default_struct" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/filter/type/default_struct" unless lookup_context.exists? template
     template = "my_admin/fields/filter/type/default_struct" unless lookup_context.exists? template
 
     render :template => template, :locals => {:show_label => show_label, :application => application, :model => model, :field => field, :object => object }
   end
   
   def filter_field_content(application, model, field, object)
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/filter/#{field}"
-    template = "my_admin/#{application.key}/fields/filter/#{field}" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/filter/#{field}"
+    template = "my_admin/applications/#{application.key}/fields/filter/#{field}" unless lookup_context.exists? template
     template = "my_admin/fields/filter/#{field}" unless lookup_context.exists? template
     
     object_type = filter_field_type(application, model, field, object)
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/filter/type/#{object_type}" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/filter/type/#{object_type}" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/filter/type/#{object_type}" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/filter/type/#{object_type}" unless lookup_context.exists? template
     template = "my_admin/fields/filter/type/#{object_type}" unless lookup_context.exists? template
     
-    template = "my_admin/#{application.key}/#{model.model_tableize}/fields/filter/type/default" unless lookup_context.exists? template
-    template = "my_admin/#{application.key}/fields/filter/type/default" unless lookup_context.exists? template
+    template = "my_admin/models/#{model.model_tableize}/fields/filter/type/default" unless lookup_context.exists? template
+    template = "my_admin/applications/#{application.key}/fields/filter/type/default" unless lookup_context.exists? template
     template = "my_admin/fields/filter/type/default" unless lookup_context.exists? template
 
     render :template => template, :locals => {:application => application, :model => model, :field => field, :object => object }

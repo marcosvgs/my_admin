@@ -1,6 +1,5 @@
 class CreateMyAdminUsers < ActiveRecord::Migration
-
-  def self.up
+  def change
     create_table :my_admin_users do |t|
       t.string :first_name, :default => "", :null => false
       t.string :last_name, :default => "", :null => false
@@ -20,9 +19,4 @@ class CreateMyAdminUsers < ActiveRecord::Migration
       t.timestamps
     end
   end
-
-  def self.down
-    drop_table :my_admin_users
-  end
-
 end

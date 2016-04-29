@@ -1,12 +1,12 @@
 <div id="navigation">
 	<div class="container-fluid">
-		<%= link_to MyAdmin.title, send("#{admin_prefix}_path"), :id => "brand" %>
+		<%= link_to MyAdmin.title, send("#{admin_prefix}_root_path"), :id => "brand" %>
 		
 		<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
 		<ul class='main-nav'>
 			<!-- <li class='active'> -->
 			<li>
-				<%= link_to content_tag(:span, "Dashboard"), send("#{admin_prefix}_path") %>
+				<%= link_to content_tag(:span, "Dashboard"), send("#{admin_prefix}_root_path") %>
 			</li>
 			<% @applications.each do |application| %>
 				<% if application.can?(my_admin_user) %>
