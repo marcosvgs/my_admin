@@ -73,7 +73,7 @@ module MyAdmin
             condition += "#{model.table_name}.#{field} <= :date_to"
           end
 
-          where(condition, { :date_from => ( params[field_name_from].to_datetime.beginning_of_day rescue nil ), :date_to => ( params[field_name_to].to_datetime.end_of_day rescue nil ) })
+          where(condition, { :date_from => ( params[field_name_from].to_time.beginning_of_day rescue nil ), :date_to => ( params[field_name_to].to_time.end_of_day rescue nil ) })
         end
 
 

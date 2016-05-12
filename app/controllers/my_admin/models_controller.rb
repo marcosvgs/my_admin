@@ -39,25 +39,25 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       
       unless params[:order_by].blank?
         if @model.respond_to? "my_admin_order_#{params[:order_by]}"
-          @objects = @model.send("my_admin_order_#{params[:order_by]}", params)
+          @objects_all = @model.send("my_admin_order_#{params[:order_by]}", params)
         else
-          @objects = @model.my_admin_order(params)
+          @objects_all = @model.my_admin_order(params)
         end
       else
-        @objects = @model.order("#{@model.table_name}.#{@model.primary_key} desc")
+        @objects_all = @model.order("#{@model.table_name}.#{@model.primary_key} desc")
       end
       
       if not @model.my_admin.filters.blank? and not params[@model.underscore].blank?
         @model.my_admin.filters.each do |field|
-          @objects = filter_filter(@application, @model, field, @objects)
+          @objects_all = filter_filter(@application, @model, field, @objects_all)
         end
       end
 
       per_page = params[:per_page] || @model.my_admin.per_page
       per_page = @model.my_admin.per_page if params[:per_page].to_i <= 0 rescue @model.my_admin.per_page
       
-      @objects = @objects.my_admin_default_scope if @objects.respond_to? :my_admin_default_scope
-      @objects = @objects.paginate(:per_page => per_page, :page => params[:page])
+      @objects_all = @objects_all.my_admin_default_scope if @objects_all.respond_to? :my_admin_default_scope
+      @objects = @objects_all.paginate(:per_page => per_page, :page => params[:page])
       
       cache_my_admin_params
       render_model_template

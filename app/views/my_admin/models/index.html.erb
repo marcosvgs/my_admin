@@ -1,5 +1,9 @@
 <% content_for :title do %>Lista de <%= @model.title_plural %><% end %>
 
+<% content_for :stats do %>
+  <%= render model_template(@application, @model, 'stats') %>
+<% end %>
+
 <%= render model_template(@application, @model, 'filters'), { :url => model_link(@application, @model) } %>
 	
 <div class="row-fluid">	
