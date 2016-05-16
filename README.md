@@ -47,6 +47,12 @@ Para adicionar um novo modelo execute o seguinte comando:
 rails g my_admin:model <Nome do seu modelo>
 ```
 
+Se o modelo ainda não existe, é recomendado criá-lo via generate:
+```console
+rails g generate scaffold <Nome do seu modelo>
+```
+
+
 O comando acima irá adicionar uma nova linha no arquivo ‘config/initializers/my_admin.rb’ que irá informar ao MyAdmin que seu modelo será administrado.
 
 E será adicionado também o controller  ‘controllers/my_admin/<model>_controller.rb’ que será responsável pelas ações do MyAdmin. Portanto se precisar alterar alguma ação padrão (index, edit, update, new, create, destroy), é esse arquivo que será alterado. (Veja mais em Alterar Ações Existente)
