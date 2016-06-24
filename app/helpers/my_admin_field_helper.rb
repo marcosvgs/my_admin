@@ -25,6 +25,14 @@ module MyAdminFieldHelper
   	collection ||= []
   	collection
   end
+
+  def field_default_value(application, model, field, object)
+    block = field_setting(model, field, :default_value)
+    unless block.blank?
+      block = instance_exec object, &(block) if block.class == Proc
+    end
+    block
+  end
   
   def field_hint(application, model, field, type)
     content_tag(:code, I18n.t!("activerecord.hint.#{model.i18n}.#{field}.#{type}"), :class => "help-block") rescue ""

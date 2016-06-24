@@ -1,0 +1,18 @@
+<%
+	field_name = "#{field.to_s.singularize}"
+
+	collection = field_collection(application, model, field, object)
+	default_value = field_default_value(application, model, field, object) || []
+
+	collection_selected = params[model.underscore][field_name].map { |i| i.to_i } if params[model.underscore].present? and params[model.underscore][field_name].present?
+
+	collection_selected ||= default_value
+
+	collection.each do |item| %>
+
+	<div class="check-line">
+		<%= check_box_tag "#{model.underscore}[#{field.to_s}][]", item.id, collection_selected.include?(item.id), id: "#{model.underscore}_#{field.to_s}_#{item.id}", class: "icheck-me", "data-skin" => "flat", "data-color" => "blue" %>
+		<%= label_tag "#{model.underscore}_#{field.to_s}_#{item.id}", item.to_s, class: "inline" %>
+	</div>
+
+<% end %>

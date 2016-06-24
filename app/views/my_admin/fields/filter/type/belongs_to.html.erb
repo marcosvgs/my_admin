@@ -8,4 +8,4 @@
 	collection_selected = params[model.underscore][field_name] if params[model.underscore].present? and params[model.underscore][field_name].present?
 	#collection_selected = object.send(field.to_s.singularize).id unless object.send(field.to_s.singularize).blank?
 %>
-<%= select_tag "#{model.underscore}[#{field_name}]", options_for_select(collection, collection_selected) %>
+<%= select_tag "#{model.underscore}[#{field_name}]", options_for_select(collection, collection_selected), { :class => "select2-me input-large" } %>
