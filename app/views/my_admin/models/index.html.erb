@@ -72,25 +72,11 @@
 							</tr>
 						</thead>
 						<% unless @objects.blank? %>
-						  <% @objects.each do |object| %>
-								<tbody>
-									<tr>
-										<% if @model.my_admin.can?(:destroy, my_admin_user) %>
-											<td class="with-checkbox">
-												<%= check_box_tag :remove, object.id %>
-											</td>
-										<% end %>
-								
-										<% @model.my_admin.list_display.each_with_index do |field, index| %>
-				  						<td>
-				  							<%= field_content(@application, @model, field, object) %>
-				  						</td>
-				  					<% end %>
-
-				  					<%= render model_template(@application, @model, 'actions'), object: object %>
-									</tr>
-								</tbody>
-							<% end %>
+							<tbody>
+						  	<% @objects.each do |object| %>
+									<%= render model_template(@application, @model, 'item'), object: object %>
+								<% end %>
+							</tbody>
 			  		<% end %>
 					</table>
 		
