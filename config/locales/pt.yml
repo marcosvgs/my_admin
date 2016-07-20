@@ -66,6 +66,7 @@ pt:
       update: "Atualizar"
       create: "Criar"
       destroy: "Excluir"
+      destroy_all: "Excluir todos"
     permissions:
       update: "Atualizar"
       create: "Criar"
