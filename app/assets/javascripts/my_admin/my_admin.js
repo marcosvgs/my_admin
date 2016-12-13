@@ -11,6 +11,30 @@ String.prototype.replaceAll = function(de, para){
     return (str);
 }
 
+var showLoading = function(e, message){
+  if(e) {
+      $(e).html($('#loading').html());
+  } else {
+      $('#loading').show();
+  }
+
+  if(!message)
+  {
+  	message = "Carregando";
+  }
+
+  $('#loading .spinner-text').html(message);
+
+}
+
+var hideLoading = function(e){
+	if(e) {
+
+    } else {
+        $('#loading').hide();
+    }
+}
+
 var updateFieldRemote = function(path, model, field, field_remote_name, value)
 {
     var id = "#" + model + "_" + field_remote_name + "_id";

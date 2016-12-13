@@ -24,8 +24,10 @@
  *= require my_admin/plugins/timepicker/bootstrap-timepicker.min
  *= require my_admin/plugins/xeditable/bootstrap-editable
  *= require my_admin/plugins/icheck/flat/_all
+ *= require my_admin/plugins/sweetalert/sweetalert
  *= require my_admin/style
  *= require my_admin/themes
+ *= require my_admin/loading
  *= require my_admin/my_admin
  *= require my_admin
  */

@@ -16,6 +16,7 @@
      <%#= raw javascript_include_merged :my_admin %>
      
      <%= stylesheet_link_tag    "my_admin/application", media: "all", "data-turbolinks-track" => true %>
+     <%= stylesheet_link_tag    "my_admin_application", media: "all", "data-turbolinks-track" => true %>
      <%= javascript_include_tag "my_admin/application", "data-turbolinks-track" => true %>
      <%= javascript_include_tag "my_admin_application", "data-turbolinks-track" => true %>
 
@@ -85,6 +86,13 @@
 
 				</div>
 			</div>     
+		</div>
+
+		<div class="loading" id="loading">
+			<div class="spinner-wrapper">
+				<span class="spinner-text">Carregando</span>
+				<span class="spinner-image"></span>
+			</div>
 		</div>
 
    </body>
