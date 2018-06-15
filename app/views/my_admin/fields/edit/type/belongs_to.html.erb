@@ -13,7 +13,7 @@
   onchange = onchangesettings unless onchangesettings.blank?
 
 	collection = field_collection(application, model, field, object)
-	collection.insert(0, ['Selecione',0])
+	collection.insert(0, ['Selecione', nil])
 	
 	collection_selected = object.send(field.to_s.singularize).id unless object.send(field.to_s.singularize).blank?
 	
