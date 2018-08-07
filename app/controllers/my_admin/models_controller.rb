@@ -28,7 +28,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       only.each do |field|
         headers << field_title(@model, field)
       end
-
+      
       send_data @objects.to_csv({:only => only, :header_columns => headers}), :type => 'text/csv; charset=utf-8; header=present', :disposition => "attachment", :filename => "#{@model.title_plural}.csv"
       return
     end
