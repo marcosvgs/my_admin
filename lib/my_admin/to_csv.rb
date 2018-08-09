@@ -10,7 +10,7 @@ class Array
         self.each do |model|
           row = []
           options[:only].each do |column|
-            row.push(model[column])
+            row.push(model.send(column.to_s))
           end
           csv << row
         end
