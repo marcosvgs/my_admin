@@ -37,7 +37,7 @@
 					</div>
 					<div class="actions pull-right">
 						<div class="input-medium per_page">
-							<%= select_tag :per_page, options_for_select([10,20,50,100,@model.all.count].map { |i| [ i == @model.all.count ? "Todos" : "#{i} por página", model_link(@application, @model, params.clone.update({:per_page => i}))]}, model_link(@application, @model, params.clone.update({:per_page => params[:per_page]}))), :class => 'chosen-select', "data-nosearch" => true %>
+							<%= select_tag :per_page, options_for_select([10,20,50,100].map { |i| ["#{i} por página", model_link(@application, @model, params.clone.update({:per_page => i}))]}, model_link(@application, @model, params.clone.update({:per_page => params[:per_page]}))), :class => 'chosen-select', "data-nosearch" => true %>
 						</div>
 					</div>
 					
