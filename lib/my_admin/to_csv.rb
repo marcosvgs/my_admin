@@ -14,7 +14,7 @@ class Array
             value = model.send(column.to_s)
             
             if value.class == Float
-              value = ActionController::Base.helpers.number_with_precision(value, precision: 2, separator: ',', delimiter: '.')
+              value = ActionController::Base.helpers.number_with_delimiter(value, :delimiter => ".", :separator => ",")
             end
 
             row.push(value)
