@@ -7,7 +7,7 @@ require "paperclip"
 require "ckeditor"
 require "csv"
 
-require "my_admin/engine"
+require "my_admin/rails/engine"
 require "my_admin/active_record"
 require "my_admin/string"
 require "my_admin/application"
@@ -19,15 +19,15 @@ require "my_admin/paperclip"
 require "my_admin/ckeditor"
 
 module MyAdmin
-  
+
   def self.setup
     yield self
   end
-  
+
   mattr_accessor :title
   @@title = "My Admin"
-  
+
   mattr_accessor :url_prefix
   @@url_prefix = "admin"
-  
+
 end

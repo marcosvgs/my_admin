@@ -7,19 +7,17 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<!-- Apple devices fullscreen -->
 		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		
+
 	  <meta name="rails-controller" content="<%= controller.class.name.underscore.gsub(%r{/}, '_').gsub("_controller", '') %>" />
 	  <meta name="rails-action" content="<%= controller.action_name %>" />
-	
+
      <title><%= MyAdmin.title %> - Sistema</title>
      <%#= raw stylesheet_link_merged :my_admin_off %>
      <%#= raw javascript_include_merged :my_admin_off %>
-     
+
      <%= stylesheet_link_tag    "my_admin/application_off", media: "all", "data-turbolinks-track" => true %>
-     <%= stylesheet_link_tag    "my_admin_application_off", media: "all", "data-turbolinks-track" => true %>
      <%= javascript_include_tag "my_admin/application_off", "data-turbolinks-track" => true %>
-     <%= javascript_include_tag "my_admin_application_off", "data-turbolinks-track" => true %>
-     
+
 		<!--[if lte IE 9]>
 			<script src="javascripts/my_admin/plugins/placeholder/jquery.placeholder.min.js"></script>
 			<script>
@@ -33,7 +31,7 @@
 		<link rel="shortcut icon" href="<%= asset_path 'my_admin/favicon.ico' %>" />
 		<!-- Apple devices Homescreen icon -->
 		<link rel="apple-touch-icon-precomposed" href="<%= asset_path 'my_admin/apple-touch-icon-precomposed.png' %>" />
-     
+
      <%= yield(:head) %>
 
      <%= csrf_meta_tag %>
@@ -45,21 +43,21 @@
 					<img src="<%= asset_path 'my_admin/logo-big.png' %>" alt="" class='retina-ready' width="59" height="49"><%= MyAdmin.title %>
 				<% end %>
 			</h1>
-			
+
 			<% if flash[:success] %>
 				<div class="alert alert-success">
 					<button class="close" data-dismiss="alert" type="button">×</button>
 					<%= raw [flash[:success]].flatten.each {|note| "#{h(note)}" }.join( '<br />' ) %>
 				</div>
 			<% end %>
-			
+
 			<% if flash[:warning] %>
 				<div class="alert">
 					<button class="close" data-dismiss="alert" type="button">×</button>
 					<%= raw [flash[:warning]].flatten.each {|note| "#{h(note)}" }.join( '<br />' ) %>
 				</div>
 			<% end %>
-			
+
 			<% if flash[:error] %>
 			  <div class="alert alert-error">
 					<button class="close" data-dismiss="alert" type="button">×</button>
@@ -67,8 +65,8 @@
 					<%= raw [flash[:error]].flatten.map {|note| "#{h(note)}" }.join( '<br />' ) %>
 			  </div>
 			<% end %>
-			
-			<%= yield %>   
+
+			<%= yield %>
 		</div>
 	</body>
 </html>

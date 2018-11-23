@@ -23,6 +23,9 @@ Gem::Specification.new do |s|
   s.add_dependency "spreadsheet",     "~> 1.0"
   s.add_dependency "htmlentities",    "~> 4.3"
   s.add_dependency "ckeditor",        "~> 4.1"
+  s.add_dependency "sass-rails"
+  s.add_dependency "coffee-rails"
+  s.add_dependency "uglifier"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
