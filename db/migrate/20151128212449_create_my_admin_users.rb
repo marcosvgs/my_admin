@@ -1,4 +1,4 @@
-class CreateMyAdminUsers < ActiveRecord::Migration
+class CreateMyAdminUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :my_admin_users do |t|
       t.string :first_name, :default => "", :null => false
@@ -9,13 +9,13 @@ class CreateMyAdminUsers < ActiveRecord::Migration
       t.boolean :active, :default => true, :null => false
       t.string :salt, :null => false
       t.string :encrypted_password, :null => false
-      
+
       t.string :photo_file_name
       t.string :photo_content_type
       t.integer :photo_file_size
       t.datetime :photo_updated_at
       t.string :encrypted_recover
-      
+
       t.timestamps
     end
   end

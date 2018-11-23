@@ -1,7 +1,7 @@
-class CreateMyAdminConfigurations < ActiveRecord::Migration
+class CreateMyAdminConfigurations < ActiveRecord::Migration[5.0]
   def change
     create_table :my_admin_configurations do |t|
-      
+
       t.string :key
       t.string :name
       t.string :field_type
@@ -10,7 +10,7 @@ class CreateMyAdminConfigurations < ActiveRecord::Migration
       t.boolean :required
 
       t.timestamps
-      
+
     end
   end
 end

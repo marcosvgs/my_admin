@@ -1,4 +1,4 @@
-class CreateMyAdminLogs < ActiveRecord::Migration
+class CreateMyAdminLogs < ActiveRecord::Migration[5.0]
   def change
     create_table :my_admin_logs do |t|
       t.integer :user_id, :null => false
@@ -9,7 +9,7 @@ class CreateMyAdminLogs < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :my_admin_logs, :user_id
   end
 end

@@ -1,4 +1,4 @@
-class CreateMyAdminLocales < ActiveRecord::Migration
+class CreateMyAdminLocales < ActiveRecord::Migration[5.0]
   def change
     create_table :my_admin_locales do |t|
       t.string :name, limit: 128

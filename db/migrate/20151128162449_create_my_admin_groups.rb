@@ -1,4 +1,4 @@
-class CreateMyAdminGroups < ActiveRecord::Migration
+class CreateMyAdminGroups < ActiveRecord::Migration[5.0]
   def change
     create_table :my_admin_groups do |t|
       t.string :name, :limit => 30, :null => false
@@ -6,7 +6,7 @@ class CreateMyAdminGroups < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :my_admin_groups, :name, :unique => true
   end
 end

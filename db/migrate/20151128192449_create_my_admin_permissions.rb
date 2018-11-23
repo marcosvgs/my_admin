@@ -1,4 +1,4 @@
-class CreateMyAdminPermissions < ActiveRecord::Migration
+class CreateMyAdminPermissions < ActiveRecord::Migration[5.0]
   def change
     create_table :my_admin_permissions do |t|
       t.string :model, :limit => 75, :null => false
