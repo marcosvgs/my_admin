@@ -66,7 +66,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
 
   def new
     if verify_permission(:create)
-      if params.member? :copy
+      if params.include?(:copy)
         @item = @model.find(params[:copy]).clone
       else
         @item = @model.new
