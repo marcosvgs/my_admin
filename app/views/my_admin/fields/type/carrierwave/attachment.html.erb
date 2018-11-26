@@ -1,0 +1,5 @@
+<% width = field_setting(model, field, :width) %>
+
+<%# if object.send(field).to_file(:my_admin) %>
+  <%= link_to image_tag(object.send(field).url, :width => width), object.send(field).url, :target => "_blank" %>
+<%# end %>
