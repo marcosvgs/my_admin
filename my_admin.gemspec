@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "will_paginate",   "~> 3.1"
   s.add_dependency "spreadsheet",     "~> 1.0"
   s.add_dependency "htmlentities",    "~> 4.3"
-  s.add_dependency "ckeditor",        "~> 4.1"
+  s.add_dependency "ckeditor",        "~> 4.2"
   s.add_dependency "sass-rails"
   s.add_dependency "coffee-rails"
   s.add_dependency "uglifier"
