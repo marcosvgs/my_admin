@@ -8,7 +8,7 @@
 <% can_add = true if can_add.nil? %>
 <% read_only = false if read_only.nil? %>
 
-<% object.send(field.to_sym).build if object.send(field.to_sym) == nil and can_add and !read_only %>
+<% object.send("build_#{field}") if object.send(field.to_sym) == nil and can_add and !read_only %>
 
 <div class="dataTables_wrapper">
 	<!-- <table class="table table-hover table-nomargin table-bordered dataTable dataTable-noheader dataTable-nosortall"> -->
