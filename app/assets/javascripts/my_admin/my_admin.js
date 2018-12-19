@@ -37,15 +37,16 @@ var hideLoading = function(e){
 
 var updateFieldRemote = function(path, model, field, field_remote_name, value)
 {
-    var id = "#" + model + "_" + field_remote_name + "_id";
-    
+    // var id = "#" + model + "_" + field_remote_name + "_id";
+    var id = "#" + model + "_" + field_remote_name;
+
     $(id).html('<option value="0">Carregando ... </option>');
 		$(id).parent().find('.select2-choice span').html("Carregando ... ");
 
 
     $(id).val('0');
     eval($(id).attr('onchange'));
-    
+
     if(eval(value) > 0)
     {
         $(id).attr('disabled', '');
@@ -54,6 +55,7 @@ var updateFieldRemote = function(path, model, field, field_remote_name, value)
     else
     {
         $(id).html('<option value="0">Selecione</option>');
+        $(id)[0].disabled = true;
     }
 }
 
@@ -61,7 +63,7 @@ var prepareFields = function(elem)
 {
 	$(elem).find(".select2-me").select2();
 	// $('.bootstrap-timepicker')
-	
+
 	// timepicker
 	$(elem).find('.timepick').timepicker({
 		defaultTime: false,
@@ -70,17 +72,17 @@ var prepareFields = function(elem)
 		template: 'dropdown',
 		showMeridian: false
 	}).on('changeTime.timepicker', function(e) {
-		
+
 		hours = e.time.hours;
 		minutes = e.time.minutes;
-		
+
 		updateDateTimeValue($(this).closest('.bootstrap-timepicker'), hours, minutes);
-		
+
 	});
 
 	// datepicker
 	$(elem).find('.datepick').datepicker({ language: 'pt-BR' });
-	
+
 	$(elem).find('input.price_format').maskMoney({thousands:'', decimal:'.', allowNegative:true, allowZero:true});
 }
 
@@ -92,28 +94,28 @@ var zeroPad = function(num, places) {
 var updateDateTimeValue = function(elem, hours, minutes)
 {
 	var datetime = "";
-	
+
 	var date = $(elem).find('.datepick').val();
-	
+
 	if(hours != null && minutes != null)
 		var time = zeroPad(hours, 2) + ":" + zeroPad(minutes, 2);
 	else
 		var time = $(elem).find('.timepick').val();
-	
+
 	if (date != "" && time != "")
 		datetime = date + " " + time;
-	
+
 	$(elem).find('.datetime').val(datetime);
 }
 
 var getTableSelected = function()
 {
 	var ret = [];
-	 
+
 	$('.table tbody .with-checkbox input:checked').each(function(index, el){
 		ret.push($(el).val());
 	});
-	
+
 	return ret;
 }
 
@@ -124,7 +126,7 @@ function postPage(link, params, method) {
 		method = 'post';
 	if(params == null)
 		params = [];
-	
+
 	var href = link,
 		csrf_token = $('meta[name=csrf-token]').attr('content'),
 		csrf_param = $('meta[name=csrf-param]').attr('content'),
@@ -134,7 +136,7 @@ function postPage(link, params, method) {
 	if (csrf_param !== undefined && csrf_token !== undefined) {
 		metadata_input += '<input name="' + csrf_param + '" value="' + csrf_token + '" type="hidden" />';
 	}
-	
+
 	$(params).each(function(index, el){
 		metadata_input += '<input name="' + el.name + '" value="' + el.value + '" type="hidden" />';
 	});
@@ -144,34 +146,34 @@ function postPage(link, params, method) {
 }
 
 $(document).on('ready page:load', function(){
-	
+
 	prepareFields($('body'));
-	
+
 	$('.btn-remove-all-selected').click(function(e){
 		e.preventDefault();
-		
+
 		var selected = getTableSelected()
-		
+
 		if(selected.length > 0)
 		{
 			if(confirm("Tem certeza que deseja excluir os itens selecionados?"))
 			{
 				var link = $(this).prop('href');
 				var params = { name: 'ids', value: selected };
-				
+
 				postPage(link, params);
 			}
 		}
 	});
-	
+
 	$('.box.list .actions #per_page').on('change', function(e){
 		window.location.href = $(this).val();
 	});
-	
+
 	$('.thefilter .with-checkbox input[type=checkbox]').click(function(e){
 		$(this).closest('table').find('.with-checkbox input[type=checkbox]').prop('checked', $(this).prop('checked'));
 	});
-	
+
 	$('.bootstrap-timepicker input').on('change', function(e){
 		updateDateTimeValue($(this).closest('.bootstrap-timepicker'));
 	});
@@ -179,14 +181,14 @@ $(document).on('ready page:load', function(){
 	//HAS MANY ITEM
   $(".add_new_has_many_item").click(function(e){
 			e.preventDefault();
-			
+
       var limit = eval($(this).closest('.controls').find('.limit').val());
-      
+
       var table = $(this).closest('.controls').find('table');
       var count = table.find('tr').length;
       var last = $(table.find('tr')[count - 1]);
-      var clone = last.clone(); 
-      
+      var clone = last.clone();
+
       clone.find('input, select').each(function(i, e){
           if($(this).attr('id'))
               $(this).attr('id', $(this).attr('id').replaceAll(count - 2, count - 1) );
@@ -198,13 +200,12 @@ $(document).on('ready page:load', function(){
       });
 
 			clone.find('.select2-container').remove();
-      
+
       if(count >= limit && limit > 0)
         $(this).remove();
-      
+
       last.after(clone);
       prepareFields(clone);
   });
-	
-})
 
+})

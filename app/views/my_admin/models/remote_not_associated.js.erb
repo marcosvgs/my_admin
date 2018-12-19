@@ -1,0 +1,11 @@
+<% field_id = "#{@model.underscore}_#{params[:field].to_s.singularize}" %>
+
+var field = $('#<%= field_id %>');
+field.parent().find('.select2-choice span').html("");
+
+field.html("");
+<% @collection.each do |text, value| %>
+    field.append("<%= raw "<option value='#{value}'>#{text}</option>" %>");
+<% end %>
+field.val("0");
+field.removeAttr("disabled");
