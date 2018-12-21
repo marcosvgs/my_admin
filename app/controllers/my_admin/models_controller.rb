@@ -171,11 +171,33 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
 
     if @model.reflections[params[:field].to_s]
       @collection ||= @model.reflections[params[:field].to_s].klass.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
-      render_model_template(:remote)
     else
-      @collection ||= SegmentCategory.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
-      render_model_template(:remote_not_associated)
+      constant_name = params[:field].classify
+
+      if Object.const_defined?(constant_name)
+        # debugger
+        klass = constant_name.constantize
+
+        unless params[:value] == "0"
+          @collection ||= klass.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
+        else
+          @collection ||= klass.all.map { |i| [i.to_s, i.id] }
+        end
+
+      end
+      # else
+      # rescue NameError => e
+      #   debugger
+      #   e.message.include? constant_name
+      #   @collection ||= JSON.parse params[:remote_collection]
+      # end
+
+      @collection.insert(0, ['Todos',0])
+
+      # render_model_template(:remote)
     end
+
+    render_model_template(:remote)
   end
 
   protected

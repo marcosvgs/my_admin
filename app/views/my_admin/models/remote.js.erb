@@ -1,4 +1,7 @@
-<% field_id = "#{@model.underscore}_#{params[:field].to_s.singularize}_id" %>
+<% field_id = "#{@model.underscore}_#{params[:field].to_s.singularize}" %>
+<% if @model.reflections[params[:field].to_s] %>
+  <% field_id = "#{field_id}_id" %>
+<% end %>
 
 var field = $('#<%= field_id %>');
 field.parent().find('.select2-choice span').html("");
@@ -8,6 +11,4 @@ field.html("");
     field.append("<%= raw "<option value='#{value}'>#{text}</option>" %>");
 <% end %>
 field.val("0");
-field.removeAttr("disabled"); 
-
-
+field.removeAttr("disabled");

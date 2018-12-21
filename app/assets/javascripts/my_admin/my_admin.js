@@ -35,10 +35,12 @@ var hideLoading = function(e){
     }
 }
 
-var updateFieldRemote = function(path, model, field, field_remote_name, value)
+var updateFieldRemote = function(path, model, field, field_remote_name, value, remote_collection = null)
 {
-    // var id = "#" + model + "_" + field_remote_name + "_id";
-    var id = "#" + model + "_" + field_remote_name;
+    var id = "#" + model + "_" + field_remote_name + "_id";
+    if ($(id)[0] == undefined) {
+      id = "#" + model + "_" + field_remote_name;
+    }
 
     $(id).html('<option value="0">Carregando ... </option>');
 		$(id).parent().find('.select2-choice span').html("Carregando ... ");
@@ -47,14 +49,14 @@ var updateFieldRemote = function(path, model, field, field_remote_name, value)
     $(id).val('0');
     eval($(id).attr('onchange'));
 
-    if(eval(value) > 0)
+    if(eval(value) >= 0)
     {
         $(id).attr('disabled', '');
-        $.post(path + "/remote", {fk: field, field: field_remote_name, fk_id: field + "_id", value: value}, null, 'script');
+        $.post(path + "/remote", {fk: field, field: field_remote_name, fk_id: field + "_id", value: value, remote_collection: remote_collection}, null, 'script');
     }
     else
     {
-        $(id).html('<option value="0">Selecione</option>');
+        $(id).html('<option value="">Selecione</option>');
         $(id)[0].disabled = true;
     }
 }
@@ -206,6 +208,14 @@ $(document).on('ready page:load', function(){
 
       last.after(clone);
       prepareFields(clone);
+  });
+
+  $(window).on('load', function(){
+    $('select.belongs-to').each(function(i, e){
+      var remote_element = $(e).attr('remote_element');
+      $('#'+remote_element).html('<option value="">Selecione</option>');
+      $('#'+remote_element)[0].disabled = true;
+    });
   });
 
 })
