@@ -185,7 +185,6 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
         end
 
       end
-      # else
       # rescue NameError => e
       #   debugger
       #   e.message.include? constant_name

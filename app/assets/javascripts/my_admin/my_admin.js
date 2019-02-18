@@ -42,6 +42,7 @@ var updateFieldRemote = function(path, model, field, field_remote_name, value, r
       id = "#" + model + "_" + field_remote_name;
     }
 
+    debugger;
     $(id).html('<option value="0">Carregando ... </option>');
 		$(id).parent().find('.select2-choice span').html("Carregando ... ");
 
