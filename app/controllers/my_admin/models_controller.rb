@@ -174,8 +174,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
     else
       constant_name = params[:field].classify
 
-      if Object.const_defined?(constant_name)
-        # debugger
+      begin
         klass = constant_name.constantize
 
         unless params[:value] == "0"
@@ -183,17 +182,12 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
         else
           @collection ||= klass.all.map { |i| [i.to_s, i.id] }
         end
-
+      rescue NameError => e
+        e.message.include? constant_name
+        @collection ||= JSON.parse params[:remote_collection]
       end
-      # rescue NameError => e
-      #   debugger
-      #   e.message.include? constant_name
-      #   @collection ||= JSON.parse params[:remote_collection]
-      # end
 
       @collection.insert(0, ['Todos',0])
-
-      # render_model_template(:remote)
     end
 
     render_model_template(:remote)

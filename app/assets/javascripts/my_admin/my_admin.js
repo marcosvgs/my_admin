@@ -42,7 +42,6 @@ var updateFieldRemote = function(path, model, field, field_remote_name, value, r
       id = "#" + model + "_" + field_remote_name;
     }
 
-    debugger;
     $(id).html('<option value="0">Carregando ... </option>');
 		$(id).parent().find('.select2-choice span').html("Carregando ... ");
 
@@ -53,10 +52,12 @@ var updateFieldRemote = function(path, model, field, field_remote_name, value, r
     if(eval(value) >= 0)
     {
         $(id).attr('disabled', '');
+        // $.post(path + "/remote", {fk: field, field: field_remote_name, fk_id: field + "_id", value: value}, null, 'script');
         $.post(path + "/remote", {fk: field, field: field_remote_name, fk_id: field + "_id", value: value, remote_collection: remote_collection}, null, 'script');
     }
     else
     {
+        // $(id).html('<option value="0">Selecione</option>');
         $(id).html('<option value="">Selecione</option>');
         $(id)[0].disabled = true;
     }
