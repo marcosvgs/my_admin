@@ -1,0 +1,20 @@
+<%
+  field_name = "#{field.to_s.singularize}_id"
+  field_id = "#{model.underscore}_#{field_name}"
+
+  remote = field_setting(model, field, :remote)
+  unless remote.blank?
+    field_remote_name = remote[:field]
+    fk = remote[:fk] || field.to_s.singularize
+    remote_model = remote[:model] || model
+    remote_collection = field_collection(application, model, remote[:field], object)
+    onchange = "updateFieldRemote('#{model_link(application, remote_model)}', '#{model.underscore}', '#{fk}', '#{field_remote_name}', $('##{field_id}').val(), '#{remote_collection}')"
+  end
+
+  collection = field_collection(application, model, field, object)
+  collection.insert(0, ['Selecione',nil])
+  collection.insert(1, ['Todos',0])
+
+  collection_selected = params[model.underscore][field_name] if params[model.underscore].present? and params[model.underscore][field_name].present?
+%>
+<%= select_tag "#{model.underscore}[#{field_name}]", options_for_select(collection, collection_selected), { :class => "select2-me input-large has-many", :onchange => onchange, "data-placeholder" => "Selecione", :remote_element => "#{model.underscore}_#{field_remote_name}" } %>
