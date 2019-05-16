@@ -5,57 +5,42 @@
 <% end %>
 
 <%= render model_template(@application, @model, 'filters'), { :url => model_link(@application, @model) } %>
-	
-<div class="row-fluid">	
+
+<div class="row-fluid">
 	<div class="span12">
-		
+
 			<div class="box list">
 				<div class="box-title">
 					<h3>
 						<i class="icon-table"></i>
 						<%= @model.title_plural %>
 					</h3>
-					
+
 					<div class="pull-right">
-						
-						<%= link_to(collection_model_link(@application, @model, :destroy_all), :class => "btn btn-danger btn-remove-all-selected") do %>
-							<i class="icon-trash"></i>
-							Excluir Selecionados
-						<% end if @model.my_admin.can?(:destroy, my_admin_user) %>
-						
-						<%= link_to(new_model_link(@application, @model), :class => "btn btn-success") do %>
-							<i class="icon-plus"></i>
-							Adicionar
-							<%#= I18n.t('my_admin.titles.models.new', :model => @model.title) %>
-						<% end if @model.my_admin.can?(:create, my_admin_user) %>
-
-				    <%= link_to(collection_model_link(@application, @model, :export, params.clone), :class => "btn btn-inverse") do %>
-							<i class="glyphicon-file_export"></i>
-							<%= I18n.t('my_admin.titles.models.export', :model => @model.title) %>
-						<% end if @model.my_admin.can?(:export, my_admin_user) %>
-
+            <%= render model_template(@application, @model, 'actions_list'), params: params, my_admin_user: my_admin_user %>
 					</div>
+          
 					<div class="actions pull-right">
 						<div class="input-medium per_page">
 							<%= select_tag :per_page, options_for_select([10,20,50,100].map { |i| ["#{i} por página", model_link(@application, @model, params.clone.update({:per_page => i}))]}, model_link(@application, @model, params.clone.update({:per_page => params[:per_page]}))), :class => 'chosen-select', "data-nosearch" => true %>
 						</div>
 					</div>
-					
+
 				</div>
 
 				<div class="box-content nopadding">
 
-					
+
 					<table class="table table-hover table-nomargin table-bordered" data-nosort="0">
 						<thead>
 							<tr class='thefilter'>
 								<% if @model.my_admin.can?(:destroy, my_admin_user) %>
 									<th class='with-checkbox'><input type="checkbox" name="check_all" id="check_all"></th>
 								<% end %>
-									
+
 								<% @model.my_admin.list_display.each do |field| %>
 						      <% order = (params[:order_by] == field.to_s && params[:order] == "asc") ? "desc" : "asc"  %>
-									
+
 									  <% if field_can_order(@application, @model, field) %>
 											<th class="sorting<%= "_#{params[:order]}" if params[:order_by] == field.to_s %>">
 									    	<%= link_to( field_title(@model, field), model_link(@application, @model, params.clone.update({:order => order, :order_by => field}))) %>
@@ -68,7 +53,7 @@
 									</th>
 								<% end %>
 								<%= render model_template(@application, @model, 'actions_header') %>
-								
+
 							</tr>
 						</thead>
 						<% unless @objects.blank? %>
@@ -79,12 +64,12 @@
 							</tbody>
 			  		<% end %>
 					</table>
-		
+
 					<%= render model_template(@application, @model, 'paginate') %>
 
 				</div>
 			</div>
-		
-		
+
+
 	</div>
 </div>

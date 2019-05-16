@@ -1,0 +1,14 @@
+<%= link_to(collection_model_link(@application, @model, :destroy_all), :class => "btn btn-danger btn-remove-all-selected") do %>
+  <i class="icon-trash"></i>
+  Excluir Selecionados
+<% end if @model.my_admin.can?(:destroy, my_admin_user) %>
+
+<%= link_to(new_model_link(@application, @model), :class => "btn btn-success") do %>
+  <i class="icon-plus"></i>
+  Adicionar
+<% end if @model.my_admin.can?(:create, my_admin_user) %>
+
+<%= link_to(collection_model_link(@application, @model, :export, params.clone), :class => "btn btn-inverse") do %>
+  <i class="glyphicon-file_export"></i>
+  <%= I18n.t('my_admin.titles.models.export', :model => @model.title) %>
+<% end if @model.my_admin.can?(:export, my_admin_user) %>
