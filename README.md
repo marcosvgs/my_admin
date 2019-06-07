@@ -1,4 +1,4 @@
-# MyAdmin [![Gem Version](https://badge.fury.io/rb/my_admin.svg)](http://badge.fury.io/rb/my_admin) 
+# MyAdmin [![Gem Version](https://badge.fury.io/rb/my_admin.svg)](http://badge.fury.io/rb/my_admin)
 
 [![PayPayl donate button](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=28BWBUS3SRU8G&lc=BR&item_name=Support%20our%20open%2dsource%20initiatives&item_number=GadboxOpenS&currency_code=BRL&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted "Donate once-off to this project using Paypal")
 
@@ -27,14 +27,14 @@ O comando acima irá criar os seguintes arquivos:
 
 Execute ‘rake db:migrate’ para criar as tabelas do MyAdmin.
 
-Inicie sua aplicação ‘rails s’. Assim o MyAdmin já estará disponível em ‘http://localhost:3000/admin’ 
+Inicie sua aplicação ‘rails s’. Assim o MyAdmin já estará disponível em ‘http://localhost:3000/admin’
 
 ## Configurações Geral
 
-As configurações do MyAdmin ficam no arquivo ‘config/initializers/my_admin.rb’. 
+As configurações do MyAdmin ficam no arquivo ‘config/initializers/my_admin.rb’.
 
 * `Paperclip.options[:command_path]` - Caminho dos executáveis do ImageMagick. (Para tratamento de imagens e arquivos)
-* `config.title` – Título da sua aplicação 
+* `config.title` – Título da sua aplicação
 * `config.url_prefix` – Caminho que o MyAdmin irá responder, padrão ‘admin’.
 
 Abaixo das configurações ficarão todos os modelos que o MyAdmin administrará.
@@ -50,7 +50,7 @@ rails g my_admin:model <Nome do seu modelo>
 O comando acima irá adicionar uma nova linha no arquivo ‘config/initializers/my_admin.rb’ que irá informar ao MyAdmin que seu modelo será administrado.
 
 E será adicionado também o controller  ‘controllers/my_admin/<model>_controller.rb’ que será responsável pelas ações do MyAdmin. Portanto se precisar alterar alguma ação padrão (index, edit, update, new, create, destroy), é esse arquivo que será alterado. (Veja mais em Alterar Ações Existente)
- 
+
 ## Configurando Modelo
 
 Todas as configurações do modelo ficará dentro do próprio arquivo de modelo (app/models/*.rb), e ficará na seguinte estrutura:
@@ -90,7 +90,7 @@ Veja abaixo todas opções:
 
 * admin.fieldsets
 
-  Lista de hashs que define quais serão os fieldsets e seus respectivos campos exibidos nos formulários de criação e edição. 
+  Lista de hashs que define quais serão os fieldsets e seus respectivos campos exibidos nos formulários de criação e edição.
   O hash podem conter os seguintes campos:
 
   - fields: lista dos campos que o fieldset contem.
@@ -103,8 +103,8 @@ Veja abaixo todas opções:
 
   ```ruby
   admin.fieldsets = [
-  	{:fields => [:name, :email, :phone]},
-  	{:fields => [:address, :number, :city, :state], :name => :location}
+    {:fields => [:name, :email, :phone]},
+    {:fields => [:address, :number, :city, :state], :name => :location}
   ]
   ```
 
@@ -138,13 +138,13 @@ Veja abaixo todas opções:
     Descrição: Define se o campo poderá ser ordenado ou não na grid de visualização.
 
     Tipo: Boolean
-     
+
     ```ruby
     admin.fields = { :image => {:order => false}}
     ```
 
   - collection:
-    
+
     Descrição: Definição das opções de um campo do tipo Lista (combo_box, ou list box)
 
     Tipo: Procedure
@@ -236,18 +236,18 @@ Veja abaixo todas opções:
   -	remote:
 
     Descrição: Ao alterar um campo do tipo lista, modifica as opções de outro campo do tipo lista por ajax.
-    Hash com dois valores: 
+    Hash com dois valores:
 
     `Field`: Campo que será alterado
 
-    `Collection`: Procedure que irá preenche as opções do campo destino. 
+    `Collection`: Procedure que irá preenche as opções do campo destino.
 
     Tipo: Hash
 
     ```ruby
     admin.fields = {
       :state => {
-        :type => :belongs_to, 
+        :type => :belongs_to,
         :filter_type => :default,
         :collection => Proc.new { State.all.map { |i| [i.to_s, i.id] } },
         :remote => {
@@ -259,7 +259,7 @@ Veja abaixo todas opções:
     ```
 
   Obs.: As customizações podem ser adicionadas em um único Hash.
-	
+
 * admin.export_display
 
   Lista que define quais serão os campos exibidos ao exportar. Por padrão irá exportar os mesmo campos definidos no list_display.
@@ -287,8 +287,8 @@ Veja abaixo todas opções:
 
   ```ruby
   admin.collection = [
-  	[:post, :approve],
-  	[:post, :disapprove]
+    [:post, :approve],
+    [:post, :disapprove]
   ]
   ```
 
@@ -342,7 +342,7 @@ Por exemplo, para criar um novo campo do tipo unidade, precisamos criar três no
 
 * /app/views/my_admin/fields/edit/type/unidade.html.erb
   Que irá exibir no formulário de editar e alterar.
-  
+
   As variáveis disponíveis são:
   - `model`: Modelo que está editando ou criado.
   - `field`: campo que está sendo renderizado
@@ -351,7 +351,7 @@ Por exemplo, para criar um novo campo do tipo unidade, precisamos criar três no
 
 * /app/views/my_admin/fields/type/unidade.html.erb
   Quer irá exibir no grid de visualização.
-  
+
   As variáveis disponíveis são:
   - `model`: Modelo que está visualizando.
   -	`field`: campo que está sendo renderizado
@@ -359,7 +359,7 @@ Por exemplo, para criar um novo campo do tipo unidade, precisamos criar três no
 
 * /app/views/my_admin/fields/filter/unidade.hmtl.erb
   Que irá exibir no formulário de filtro.
-  
+
   As variáveis disponíveis são:
   -	`model`: Modelo que está visualizando.
   -	`field`: campo que está sendo renderizado
@@ -405,3 +405,36 @@ Caso precise alterar a estrutura da área do qualquer campo, é possível criand
 Para ver como cada tipo de campo se comporta por padrão, acesse os arquivos no diretório/gems/my_admin/views/my_admin/fields/.
 
 Obs: Caso um dos arquivos não seja criado, o MyAdmin irá utilizar a view do tipo default.
+
+## Contribuir
+
+Veja o [guia de contribuição](https://github.com/marcosvgs/my_admin/blob/master/CONTRIBUTING.md)
+
+## Suporte
+Se você tiver qualquer problema ou sugestão, por favor abra uma issue [aqui](https://github.com/marcosvgs/my_admin/issues).
+
+## Licença
+
+The MIT License (MIT)
+
+Copyright (c) 2015, Marcos Vinicius von Gal dos Santos
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+=======
