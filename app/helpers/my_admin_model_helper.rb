@@ -5,7 +5,7 @@ module MyAdminModelHelper
   end
 
   def member_model_link(application, model, action, options={})
-    send("#{action}_#{admin_prefix}_#{model.my_admin.url_single}_path", options)
+    send("#{action}_#{admin_prefix}_#{application.url}_#{model.my_admin.url_single}_path", options)
   end
 
   def model_link(application, model, options={})
