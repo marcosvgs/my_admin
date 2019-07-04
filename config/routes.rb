@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
     MyAdmin::Application.items.each do |application|
       application.models.each_with_index do |model, index|
-        scope model.my_admin.application_url do
+        scope path: model.my_admin.application_url, as: model.my_admin.application_url do
           resources model.my_admin.url, :controller => model.tableize do
 
             collection do
