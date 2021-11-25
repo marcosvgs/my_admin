@@ -1,9 +1,31 @@
 <div class="box-content nopadding">
 	<div class="pull-left">
-		<%= page_entries_info @objects %>
+		<%#= page_entries_info @objects %>
+
+		Exibindo <b>1</b> a <b>10</b> de <b>1436363</b> registros
+		
 	</div>
 
 	<div class="pull-right">
-		<%= will_paginate(@objects, :renderer => BootstrapLinkRenderer, :class => "pagination pagination-small") unless @objects.blank? %>
+		<%#= will_paginate(@objects, :renderer => BootstrapLinkRenderer, :class => "pagination pagination-small") unless @objects.blank? %>
+
+
+		<div role="navigation" class="pagination pagination-small">
+			<ul>
+				<li class="prev previous_page disabled">
+					<a href="#">Anterior</a>
+				</li> 
+				<li class="active">
+					<a href="/financial/plans?page=1">1</a>
+				</li> 
+				<li>
+					<a rel="next" href="/financial/plans?page=2">2</a>
+				</li>
+				<li class="next next_page ">
+					<a rel="next" href="/financial/plans?page=2">Próximo</a>
+				</li>
+			</ul>
+		</div>
+
 	</div>
 </div>

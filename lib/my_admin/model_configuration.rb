@@ -8,18 +8,17 @@ module MyAdmin
         @class = klass
         @application = "content"
         @permissions = [:list, :create, :update, :destroy, :export]
-        if @class.table_exists?
-          @list_display = (klass.columns.map{ |c| c.name } - ['id', 'created_at', 'updated_at']) #, 'created_at', 'updated_at'])
-          @fieldsets = [{:fields => (klass.columns.map{ |c| c.name } - ['id', 'created_at', 'updated_at']) }] # , 'created_at', 'updated_at']) }]
-          @show_display = nil #(klass.columns.map{ |c| c.name } - ['id'])
-          @export_display = nil #(klass.columns.map{ |c| c.name })
-          @filters = nil
-        end
         @collection = []
         @member = []
         @fields = {}
         @per_page = 10
-      rescue
+        unless klass.columns.blank?
+          @list_display = (klass.columns.map{ |c| c.name } - ['_id', 'id', 'created_at', 'updated_at']) #, 'created_at', 'updated_at'])
+          @fieldsets = [{:fields => (klass.columns.map{ |c| c.name } - ['_id', 'id', 'created_at', 'updated_at']) }] # , 'created_at', 'updated_at']) }]
+          @show_display = nil #(klass.columns.map{ |c| c.name } - ['id'])
+          @export_display = nil #(klass.columns.map{ |c| c.name })
+          @filters = nil
+        end
       end
     end
 

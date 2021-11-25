@@ -46,7 +46,7 @@ module MyAdmin
     end
     
     def can?(user)
-      not self.models.find { |model| model.my_admin.can?(:list, user) }.blank?
+      not self.models.find { |model| model.my_admin.can?(:list, user) }.nil?
     end
     
     def url

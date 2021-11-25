@@ -9,6 +9,7 @@ require "csv"
 
 require "my_admin/engine"
 require "my_admin/active_record"
+require "my_admin/mongoid"
 require "my_admin/string"
 require "my_admin/application"
 require "my_admin/locales"
